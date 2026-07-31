@@ -8,6 +8,7 @@ from agents.sentiment_agent import IntentSentimentAgent
 from agents.knowledge_agent import KnowledgeRecommendationAgent
 from agents.coaching_pipeline import CoachingPipeline
 from agents.response_evaluator import ResponseEvaluator
+from agents.orchestrator import AgentOrchestrator
 
 
 simulator_agent = CustomerSimulatorAgent()
@@ -15,6 +16,7 @@ sentiment_agent = IntentSentimentAgent()
 knowledge_agent = KnowledgeRecommendationAgent()
 coaching_pipeline = CoachingPipeline()
 response_evaluator = ResponseEvaluator()
+orchestrator = AgentOrchestrator()
 
 
 def get_json_data():
@@ -272,8 +274,87 @@ def register_routes(app):
                 "status": "error",
                 "message": str(error)
             }), 400
+    @app.route("/process-manual-message", methods=["POST"])
+    def process_manual_message():
+        """
+        Processes a customer message and agent reply
+        without creating a tracked session.
 
+        This route is retained for compatibility
+        with the existing frontend.
+        """
 
+        try:
+            data = get_json_data()
+
+            customer_message = data.get(
+                "customer_message",
+                ""
+            ).strip()
+
+            agent_reply = data.get(
+                "agent_reply",
+                ""
+            ).strip()
+
+            if not customer_message:
+                return jsonify({
+                    "status": "error",
+                    "message": "Customer message is required"
+                }), 400
+
+            if not agent_reply:
+                return jsonify({
+                    "status": "error",
+                    "message": "Agent reply is required"
+                }), 400
+
+            customer_analysis = sentiment_agent.analyze(
+                customer_message
+            )
+
+            knowledge = orchestrator._retrieve_knowledge(
+                data.get("product", "Amazon"),
+                customer_message
+            )
+
+            evaluation = response_evaluator.evaluate(
+                customer_message=customer_message,
+                agent_reply=agent_reply,
+                knowledge=knowledge
+            )
+
+            escalation = orchestrator.escalation_agent.check_risk(
+                customer_analysis,
+                customer_message
+            )
+
+            next_customer_message = simulator_agent.generate_message(
+                data.get("product", "Amazon"),
+                data.get("scenario", "General Support"),
+                data.get(
+                    "customer_persona",
+                    "Regular Customer"
+                ),
+                data.get("language", "English")
+            )
+
+            return jsonify({
+                "status": "success",
+                "analysis": customer_analysis,
+                "evaluation": evaluation,
+                "knowledge": knowledge,
+                "next_customer_message": next_customer_message,
+                "escalation": escalation
+            })
+
+        except Exception as error:
+            print("PROCESS MANUAL MESSAGE ERROR =", error)
+
+            return jsonify({
+                "status": "error",
+                "message": str(error)
+            }), 500
     @app.route("/process-reply", methods=["POST"])
     def process_reply():
         """
@@ -339,22 +420,16 @@ def register_routes(app):
                     "status": "error",
                     "message": "This session is already completed"
                 }), 400
-
-            customer_analysis = sentiment_agent.analyze(
-                customer_message
-            )
-
-            knowledge = get_knowledge(
-                current_session["product"],
-                customer_message
-            )
-
-            evaluation = response_evaluator.evaluate(
-                customer_message=customer_message,
-                agent_reply=agent_reply,
-                knowledge=knowledge
-            )
-
+            result = orchestrator.process_turn(
+    session=current_session,
+    customer_message=customer_message,
+    agent_reply=agent_reply
+)
+            customer_analysis = result["customer_analysis"]
+            knowledge = result["knowledge"]
+            evaluation = result["evaluation"]
+            next_customer_message = result["next_customer_message"]
+            escalation = result["escalation"]
             print("EVALUATION =", evaluation)
 
             turn = session_manager.add_turn(
@@ -365,15 +440,7 @@ def register_routes(app):
                 evaluation=evaluation,
                 knowledge=knowledge
             )
-
-            next_customer_message = generate_next_customer_message(
-                current_session
-            )
-
-            current_session["current_customer_message"] = (
-                next_customer_message
-            )
-
+            current_session["current_customer_message"] = next_customer_message
             live_summary = session_manager.calculate_summary(
                 session_id
             )
@@ -392,6 +459,7 @@ def register_routes(app):
                 "evaluation": evaluation,
                 "knowledge": knowledge,
                 "next_customer_message": next_customer_message,
+                "escalation": escalation,
                 "live_summary": live_summary
             })
 
