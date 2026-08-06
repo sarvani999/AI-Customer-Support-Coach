@@ -1,0 +1,47 @@
+{
+    "documents": [
+        {
+            "document_id": "ff76baad-f7c4-4f6f-a776-959cd9ab3270",
+            "title": "amazon refund policy",
+            "file_name": "amazon_refund_delay_policy.pdf",
+            "stored_file_name": "ff76baad-f7c4-4f6f-a776-959cd9ab3270_amazon_refund_delay_policy.pdf",
+            "product": "Amazon",
+            "scenario": "Refund Delay",
+            "file_type": "PDF",
+            "file_path": "C:\\AI\\AI-Customer-Support-Coach\\agents\\knowledge_data\\uploads\\ff76baad-f7c4-4f6f-a776-959cd9ab3270_amazon_refund_delay_policy.pdf",
+            "characters_extracted": 1372,
+            "pages_processed": 1,
+            "chunks_created": 2,
+            "status": "Ready",
+            "uploaded_at": "2026-08-06T22:39:22"
+        }
+    ],
+    "chunks": [
+        {
+            "chunk_id": "2edc28fc-82a4-401f-8996-e95c2e8d34c0",
+            "document_id": "ff76baad-f7c4-4f6f-a776-959cd9ab3270",
+            "chunk_number": 1,
+            "title": "amazon refund policy",
+            "file_name": "amazon_refund_delay_policy.pdf",
+            "product": "Amazon",
+            "scenario": "Refund Delay",
+            "page_number": 1,
+            "content": "Amazon Refund Delay Support Policy\nProduct: Amazon Scenario: Refund Delay\nDemo policy document created for testing an AI customer-support knowledge base. This is sample content, not an official\ncompany policy.\nPurpose\nUse this guidance when a customer says a refund is pending, delayed, not credited, or missing after a\nreturn or cancellation.\nVerification Checklist\nStep\nGuidance\n1\nConfirm the order ID, refund reference, payment method, and date on which the\nreturn or cancellation was completed.\n2\nCheck whether the returned item has passed warehouse verification or whether the\ncancellation refund has been initiated.\n3\nCheck whether the refund is marked as initiated, processed, failed, reversed, or\npending.\nCustomer Guidance\nExplain the current refund status clearly. Do not promise an exact credit date unless the system\nprovides one.",
+            "normalized_content": "amazon refund delay support policy product amazon scenario refund delay demo policy document created for testing an ai customer support knowledge base this is sample content not an official company policy purpose use this guidance when a customer says a refund is pending delayed not credited or missing after a return or cancellation verification checklist step guidance 1 confirm the order id refund reference payment method and date on which the return or cancellation was completed 2 check whether the returned item has passed warehouse verification or whether the cancellation refund has been initiated 3 check whether the refund is marked as initiated processed failed reversed or pending customer guidance explain the current refund status clearly do not promise an exact credit date unless the system provides one",
+            "uploaded_at": "2026-08-06T22:39:22"
+        },
+        {
+            "chunk_id": "770595f6-4326-48e7-88a2-a418500cbacd",
+            "document_id": "ff76baad-f7c4-4f6f-a776-959cd9ab3270",
+            "chunk_number": 2,
+            "title": "amazon refund policy",
+            "file_name": "amazon_refund_delay_policy.pdf",
+            "product": "Amazon",
+            "scenario": "Refund Delay",
+            "page_number": 1,
+            "content": "reversed, or\npending.\nCustomer Guidance\nExplain the current refund status clearly. Do not promise an exact credit date unless the system\nprovides one. If the refund is processed but not visible, ask the customer to verify the original payment\nmethod and allow the applicable banking time.\nEscalation\nEscalate when the refund has exceeded the stated processing window, the transaction shows failed or\nreversed, or the customer has already contacted support multiple times without resolution.\nRecommended Agent Response\nAcknowledge the delay, confirm that you will verify the refund reference and payment method, provide\nthe next step, and avoid repeating a generic waiting message.",
+            "normalized_content": "reversed or pending customer guidance explain the current refund status clearly do not promise an exact credit date unless the system provides one if the refund is processed but not visible ask the customer to verify the original payment method and allow the applicable banking time escalation escalate when the refund has exceeded the stated processing window the transaction shows failed or reversed or the customer has already contacted support multiple times without resolution recommended agent response acknowledge the delay confirm that you will verify the refund reference and payment method provide the next step and avoid repeating a generic waiting message",
+            "uploaded_at": "2026-08-06T22:39:22"
+        }
+    ]
+}

@@ -11,22 +11,18 @@
     <meta name="description"
           content="AI Customer Support Coaching Simulator">
 
-    <title>Simulator | AI Customer Support Coach</title>
+    <title>
+        AI Customer Support Simulator
+    </title>
 
-
-    <!-- Bootstrap -->
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet">
 
 
-    <!-- Bootstrap Icons -->
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
           rel="stylesheet">
 
-
-    <!-- Project CSS -->
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
@@ -36,22 +32,24 @@
 
         :root {
 
-            --sim-navy:#0b1f3a;
-            --sim-blue:#2563eb;
-            --sim-blue-soft:#eff6ff;
-            --sim-bg:#f4f7fb;
-            --sim-card:#ffffff;
-            --sim-text:#0f172a;
-            --sim-muted:#64748b;
-            --sim-border:#dbe3ee;
-            --sim-green:#15803d;
-            --sim-green-soft:#ecfdf3;
-            --sim-orange:#d97706;
-            --sim-orange-soft:#fff7ed;
-            --sim-red:#dc2626;
-            --sim-red-soft:#fef2f2;
-            --sim-radius:10px;
-            --sim-shadow:0 4px 14px rgba(15,23,42,.06);
+            --navy:#0b1f3a;
+            --blue:#2563eb;
+            --blue-dark:#1d4ed8;
+            --blue-soft:#eff6ff;
+            --background:#f4f7fb;
+            --card:#ffffff;
+            --text:#0f172a;
+            --muted:#64748b;
+            --border:#dbe3ee;
+            --green:#15803d;
+            --green-soft:#ecfdf3;
+            --orange:#d97706;
+            --orange-soft:#fff7ed;
+            --red:#dc2626;
+            --red-soft:#fef2f2;
+            --radius:10px;
+            --shadow:
+                0 4px 14px rgba(15, 23, 42, 0.06);
 
         }
 
@@ -69,11 +67,15 @@
 
             min-height:100vh;
 
-            background:var(--sim-bg);
+            background:var(--background);
 
-            color:var(--sim-text);
+            color:var(--text);
 
-            font-family:Inter,"Segoe UI",Arial,sans-serif;
+            font-family:
+                Inter,
+                "Segoe UI",
+                Arial,
+                sans-serif;
 
             font-size:14px;
 
@@ -87,11 +89,20 @@
         }
 
 
+        button,
+        input,
+        textarea {
+
+            font:inherit;
+
+        }
+
+
         /* =========================================
-           TOP NAVBAR
+           NAVBAR
         ========================================= */
 
-        .sim-navbar {
+        .app-navbar {
 
             position:sticky;
 
@@ -99,22 +110,23 @@
 
             z-index:1000;
 
-            min-height:66px;
+            min-height:62px;
 
             display:flex;
 
             align-items:center;
 
-            background:var(--sim-navy);
+            background:var(--navy);
 
             border-top:3px solid #f59e0b;
 
-            box-shadow:0 2px 8px rgba(15,23,42,.12);
+            box-shadow:
+                0 2px 8px rgba(15, 23, 42, 0.12);
 
         }
 
 
-        .sim-navbar-inner {
+        .navbar-inner {
 
             width:100%;
 
@@ -124,12 +136,12 @@
 
             justify-content:space-between;
 
-            padding:0 22px;
+            padding:0 18px;
 
         }
 
 
-        .sim-brand {
+        .brand {
 
             display:flex;
 
@@ -139,19 +151,19 @@
 
             color:#ffffff;
 
-            font-weight:700;
+            font-weight:750;
 
         }
 
 
-        .sim-brand:hover {
+        .brand:hover {
 
             color:#ffffff;
 
         }
 
 
-        .sim-brand-icon {
+        .brand-icon {
 
             width:34px;
 
@@ -163,7 +175,7 @@
 
             border-radius:8px;
 
-            background:var(--sim-blue);
+            background:var(--blue);
 
             color:#ffffff;
 
@@ -176,12 +188,12 @@
 
             align-items:center;
 
-            gap:10px;
+            gap:9px;
 
         }
 
 
-        .live-pill {
+        .system-pill {
 
             display:inline-flex;
 
@@ -193,20 +205,21 @@
 
             border-radius:999px;
 
-            background:rgba(22,163,74,.16);
+            background:
+                rgba(22, 163, 74, 0.16);
 
             color:#86efac;
 
-            font-size:10px;
+            font-size:9px;
 
-            font-weight:700;
+            font-weight:750;
 
-            letter-spacing:.45px;
+            letter-spacing:0.4px;
 
         }
 
 
-        .live-pill::before {
+        .system-pill::before {
 
             content:"";
 
@@ -223,7 +236,7 @@
 
         .navbar-button {
 
-            min-height:34px;
+            min-height:33px;
 
             display:inline-flex;
 
@@ -231,11 +244,12 @@
 
             justify-content:center;
 
-            gap:7px;
+            gap:6px;
 
-            padding:7px 12px;
+            padding:6px 11px;
 
-            border:1px solid rgba(255,255,255,.22);
+            border:
+                1px solid rgba(255, 255, 255, 0.22);
 
             border-radius:7px;
 
@@ -243,9 +257,9 @@
 
             color:#ffffff;
 
-            font-size:12px;
+            font-size:11px;
 
-            font-weight:600;
+            font-weight:650;
 
             cursor:pointer;
 
@@ -254,9 +268,19 @@
 
         .navbar-button:hover {
 
-            background:rgba(255,255,255,.08);
+            background:
+                rgba(255, 255, 255, 0.08);
 
             color:#ffffff;
+
+        }
+
+
+        .navbar-button:disabled {
+
+            opacity:0.55;
+
+            cursor:not-allowed;
 
         }
 
@@ -265,119 +289,122 @@
            APPLICATION LAYOUT
         ========================================= */
 
-        .sim-app {
+        .app-layout {
 
             display:grid;
 
-            grid-template-columns:230px minmax(0,1fr);
+            grid-template-columns:
+                220px minmax(0, 1fr);
 
-            min-height:calc(100vh - 66px);
+            min-height:
+                calc(100vh - 62px);
 
         }
 
 
-        .sim-sidebar {
+        .sidebar {
 
             position:sticky;
 
-            top:66px;
+            top:62px;
 
-            height:calc(100vh - 66px);
+            height:
+                calc(100vh - 62px);
 
-            padding:20px 14px;
+            padding:18px 13px;
 
             background:#ffffff;
 
-            border-right:1px solid var(--sim-border);
+            border-right:
+                1px solid var(--border);
 
         }
 
 
         .sidebar-label {
 
-            margin:2px 10px 9px;
+            margin:2px 9px 8px;
 
             color:#94a3b8;
 
-            font-size:10px;
+            font-size:9px;
 
-            font-weight:700;
+            font-weight:750;
 
-            letter-spacing:.7px;
+            letter-spacing:0.65px;
 
             text-transform:uppercase;
 
         }
 
 
-        .sidebar-menu-link {
+        .sidebar-link {
 
             display:flex;
 
             align-items:center;
 
-            gap:10px;
+            gap:9px;
 
-            min-height:42px;
+            min-height:40px;
 
             margin-bottom:4px;
 
-            padding:10px 12px;
+            padding:9px 11px;
 
             border-radius:7px;
 
             color:#475569;
 
-            font-size:12px;
+            font-size:11px;
 
-            font-weight:600;
+            font-weight:650;
 
         }
 
 
-        .sidebar-menu-link i {
+        .sidebar-link i {
 
             width:17px;
 
             color:#64748b;
 
-            font-size:14px;
-
         }
 
 
-        .sidebar-menu-link:hover {
+        .sidebar-link:hover {
 
             background:#f8fafc;
 
-            color:var(--sim-blue);
+            color:var(--blue);
 
         }
 
 
-        .sidebar-menu-link.active {
+        .sidebar-link.active {
 
-            background:var(--sim-blue-soft);
+            background:var(--blue-soft);
 
-            color:var(--sim-blue);
-
-        }
-
-
-        .sidebar-menu-link.active i {
-
-            color:var(--sim-blue);
+            color:var(--blue);
 
         }
 
 
-        .session-info-card {
+        .sidebar-link.active i {
 
-            margin-top:24px;
+            color:var(--blue);
 
-            padding:14px;
+        }
 
-            border:1px solid var(--sim-border);
+
+        .session-card {
+
+            margin-top:22px;
+
+            padding:13px;
+
+            border:
+                1px solid var(--border);
 
             border-radius:9px;
 
@@ -386,35 +413,35 @@
         }
 
 
-        .session-info-card h4 {
+        .session-card h3 {
 
             margin:0 0 8px;
 
             font-size:12px;
 
-            font-weight:700;
+            font-weight:750;
 
         }
 
 
-        .session-info-card p {
+        .session-card p {
 
-            margin:0 0 6px;
+            margin:0 0 5px;
 
-            color:var(--sim-muted);
+            color:var(--muted);
 
-            font-size:10px;
+            font-size:9px;
 
             line-height:1.5;
 
         }
 
 
-        .sim-main {
+        .main-content {
 
             min-width:0;
 
-            padding:22px;
+            padding:20px;
 
         }
 
@@ -423,7 +450,7 @@
            PAGE HEADER
         ========================================= */
 
-        .sim-page-header {
+        .page-header {
 
             display:flex;
 
@@ -431,38 +458,38 @@
 
             justify-content:space-between;
 
-            gap:18px;
+            gap:16px;
 
-            margin-bottom:18px;
-
-        }
-
-
-        .sim-page-title {
-
-            margin:0 0 5px;
-
-            font-size:22px;
-
-            font-weight:750;
-
-            letter-spacing:-.4px;
+            margin-bottom:16px;
 
         }
 
 
-        .sim-page-subtitle {
+        .page-title {
+
+            margin:0 0 4px;
+
+            font-size:21px;
+
+            font-weight:780;
+
+            letter-spacing:-0.35px;
+
+        }
+
+
+        .page-subtitle {
 
             margin:0;
 
-            color:var(--sim-muted);
+            color:var(--muted);
 
-            font-size:12px;
+            font-size:11px;
 
         }
 
 
-        .scenario-tags {
+        .session-tags {
 
             display:flex;
 
@@ -470,12 +497,12 @@
 
             justify-content:flex-end;
 
-            gap:7px;
+            gap:6px;
 
         }
 
 
-        .scenario-tag {
+        .session-tag {
 
             display:inline-flex;
 
@@ -483,58 +510,61 @@
 
             gap:5px;
 
-            padding:6px 9px;
+            padding:5px 8px;
 
             border:1px solid #cfe0ff;
 
             border-radius:999px;
 
-            background:var(--sim-blue-soft);
+            background:var(--blue-soft);
 
-            color:var(--sim-blue);
+            color:var(--blue);
 
-            font-size:10px;
+            font-size:9px;
 
-            font-weight:700;
+            font-weight:750;
 
         }
 
 
         /* =========================================
-           MAIN GRID
+           COMMON CARDS
         ========================================= */
 
-        .sim-grid {
+        .main-grid {
 
             display:grid;
 
-            grid-template-columns:minmax(0,1.65fr) minmax(330px,.85fr);
+            grid-template-columns:
+                minmax(0, 1.65fr)
+                minmax(325px, 0.85fr);
 
-            gap:18px;
+            gap:16px;
 
             align-items:start;
 
         }
 
 
-        .sim-card {
+        .card-panel {
 
-            background:var(--sim-card);
+            background:var(--card);
 
-            border:1px solid var(--sim-border);
+            border:
+                1px solid var(--border);
 
-            border-radius:var(--sim-radius);
+            border-radius:var(--radius);
 
-            box-shadow:var(--sim-shadow);
+            box-shadow:var(--shadow);
 
             overflow:hidden;
 
         }
 
 
-        .sim-card-header {
+        .card-header-custom {
 
-            min-height:54px;
+            min-height:52px;
 
             display:flex;
 
@@ -542,11 +572,12 @@
 
             justify-content:space-between;
 
-            gap:12px;
+            gap:10px;
 
-            padding:13px 16px;
+            padding:12px 15px;
 
-            border-bottom:1px solid var(--sim-border);
+            border-bottom:
+                1px solid var(--border);
 
             background:#ffffff;
 
@@ -566,9 +597,9 @@
 
         .card-icon {
 
-            width:30px;
+            width:29px;
 
-            height:30px;
+            height:29px;
 
             display:grid;
 
@@ -576,36 +607,42 @@
 
             border-radius:7px;
 
-            background:var(--sim-blue-soft);
+            background:var(--blue-soft);
 
-            color:var(--sim-blue);
+            color:var(--blue);
 
         }
 
 
-        .card-title-main {
+        .card-title-custom {
 
             margin:0;
 
-            font-size:13px;
+            font-size:12px;
 
             font-weight:750;
 
         }
 
 
-        .card-subtitle {
+        .card-subtitle-custom {
 
             margin:2px 0 0;
 
-            color:var(--sim-muted);
+            color:var(--muted);
 
-            font-size:10px;
+            font-size:9px;
 
         }
 
 
-        .turn-pill {
+        .status-pill {
+
+            display:inline-flex;
+
+            align-items:center;
+
+            justify-content:center;
 
             padding:5px 8px;
 
@@ -615,36 +652,50 @@
 
             color:#475569;
 
-            font-size:10px;
+            font-size:9px;
 
-            font-weight:700;
+            font-weight:750;
 
         }
 
 
-        /* =========================================
-           CONVERSATION
+        .panel-body {
+
+            padding:13px 15px;
+
+        }
+
+
+        #pageError {
+
+            margin-bottom:14px;
+
+            font-size:11px;
+
+        }
+                /* =========================================
+           LIVE CONVERSATION
         ========================================= */
 
         .conversation-card {
 
-            min-height:610px;
+            min-height:640px;
 
         }
 
 
         .chat-area {
 
-            height:465px;
+            height:440px;
 
             overflow-y:auto;
 
-            padding:18px;
+            padding:17px;
 
             background:
                 linear-gradient(
-                    rgba(248,250,252,.90),
-                    rgba(248,250,252,.90)
+                    rgba(248,250,252,0.93),
+                    rgba(248,250,252,0.93)
                 ),
                 radial-gradient(
                     circle at top right,
@@ -662,17 +713,17 @@
 
             max-width:76%;
 
-            margin-bottom:15px;
+            margin-bottom:14px;
 
             padding:11px 13px;
 
-            border:1px solid var(--sim-border);
+            border:
+                1px solid var(--border);
 
             border-radius:10px;
 
-            background:#ffffff;
-
-            box-shadow:0 2px 6px rgba(15,23,42,.04);
+            box-shadow:
+                0 2px 6px rgba(15,23,42,0.04);
 
         }
 
@@ -680,6 +731,8 @@
         .customer-message {
 
             margin-right:auto;
+
+            background:#ffffff;
 
         }
 
@@ -690,28 +743,33 @@
 
             border-color:#bfdbfe;
 
-            background:var(--sim-blue-soft);
+            background:var(--blue-soft);
 
         }
 
 
-        .customer-name,
-        .agent-name {
+        .message-name {
+
+            display:flex;
+
+            align-items:center;
+
+            gap:5px;
 
             margin-bottom:5px;
 
             color:#334155;
 
-            font-size:10px;
+            font-size:9px;
 
             font-weight:750;
 
         }
 
 
-        .agent-name {
+        .agent-message .message-name {
 
-            color:var(--sim-blue);
+            color:var(--blue);
 
         }
 
@@ -723,7 +781,7 @@
 
             color:#263449;
 
-            font-size:12px;
+            font-size:11px;
 
             line-height:1.55;
 
@@ -740,35 +798,139 @@
 
             color:#94a3b8;
 
-            font-size:9px;
+            font-size:8px;
 
             text-align:right;
 
         }
 
 
-        .reply-box {
+        .chat-empty-state {
 
             display:grid;
 
-            grid-template-columns:minmax(0,1fr) 104px;
+            place-items:center;
 
-            gap:10px;
+            min-height:100%;
 
-            padding:14px 16px 16px;
+            color:#94a3b8;
 
-            border-top:1px solid var(--sim-border);
+            font-size:11px;
+
+            text-align:center;
+
+        }
+
+
+        /* =========================================
+           MANUAL / DYNAMIC MESSAGE CONTROLS
+        ========================================= */
+
+        .scenario-controls {
+
+            padding:14px 15px;
+
+            border-top:
+                1px solid var(--border);
 
             background:#ffffff;
 
         }
 
 
-        .reply-box .form-control {
+        .scenario-controls-title {
 
-            min-height:48px;
+            display:flex;
 
-            padding:12px 13px;
+            align-items:center;
+
+            justify-content:space-between;
+
+            gap:10px;
+
+            margin-bottom:9px;
+
+        }
+
+
+        .scenario-controls-title span {
+
+            color:#475569;
+
+            font-size:10px;
+
+            font-weight:750;
+
+        }
+
+
+        .new-message-button {
+
+            min-height:31px;
+
+            display:inline-flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            gap:6px;
+
+            padding:6px 10px;
+
+            border:1px solid #bfdbfe;
+
+            border-radius:7px;
+
+            background:#eff6ff;
+
+            color:#2563eb;
+
+            font-size:9px;
+
+            font-weight:750;
+
+            cursor:pointer;
+
+        }
+
+
+        .new-message-button:hover {
+
+            background:#dbeafe;
+
+        }
+
+
+        .new-message-button:disabled {
+
+            opacity:0.55;
+
+            cursor:not-allowed;
+
+        }
+
+
+        .manual-message-row {
+
+            display:grid;
+
+            grid-template-columns:
+                minmax(0,1fr)
+                150px;
+
+            gap:9px;
+
+        }
+
+
+        #manualCustomerMessage {
+
+            min-height:72px;
+
+            resize:vertical;
+
+            padding:10px 11px;
 
             border:1px solid #cbd5e1;
 
@@ -776,53 +938,340 @@
 
             box-shadow:none;
 
-            font-size:12px;
+            font-size:11px;
 
         }
 
 
-        .reply-box .form-control:focus {
+        #manualCustomerMessage:focus {
 
-            border-color:var(--sim-blue);
+            border-color:var(--blue);
 
-            box-shadow:0 0 0 3px rgba(37,99,235,.10);
+            box-shadow:
+                0 0 0 3px rgba(37,99,235,0.10);
 
         }
 
 
-        .simulator-btn {
+        .manual-action-button {
 
-            min-height:48px;
+            min-height:72px;
 
             border:0;
 
             border-radius:8px;
 
-            background:var(--sim-blue);
+            background:var(--blue);
 
             color:#ffffff;
 
-            font-size:12px;
+            font-size:10px;
 
-            font-weight:700;
+            font-weight:750;
 
             cursor:pointer;
 
         }
 
 
-        .simulator-btn:hover {
+        .manual-action-button:hover {
 
-            background:#1d4ed8;
+            background:var(--blue-dark);
 
         }
 
 
-        .simulator-btn:disabled {
+        .manual-action-button:disabled {
 
-            opacity:.58;
+            opacity:0.55;
 
             cursor:not-allowed;
+
+        }
+
+
+        /* =========================================
+           AGENT REPLY
+        ========================================= */
+
+        .reply-area {
+
+            display:grid;
+
+            grid-template-columns:
+                minmax(0,1fr)
+                105px;
+
+            gap:9px;
+
+            padding:14px 15px;
+
+            border-top:
+                1px solid var(--border);
+
+            background:#ffffff;
+
+        }
+
+
+        #agentReplyInput {
+
+            min-height:48px;
+
+            padding:11px 12px;
+
+            border:1px solid #cbd5e1;
+
+            border-radius:8px;
+
+            box-shadow:none;
+
+            font-size:11px;
+
+        }
+
+
+        #agentReplyInput:focus {
+
+            border-color:var(--blue);
+
+            box-shadow:
+                0 0 0 3px rgba(37,99,235,0.10);
+
+        }
+
+
+        .primary-button {
+
+            min-height:48px;
+
+            display:inline-flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            gap:6px;
+
+            border:0;
+
+            border-radius:8px;
+
+            background:var(--blue);
+
+            color:#ffffff;
+
+            font-size:11px;
+
+            font-weight:750;
+
+            cursor:pointer;
+
+        }
+
+
+        .primary-button:hover {
+
+            background:var(--blue-dark);
+
+        }
+
+
+        .primary-button:disabled {
+
+            opacity:0.55;
+
+            cursor:not-allowed;
+
+        }
+
+
+        /* =========================================
+           AI AGENT SUGGESTION
+        ========================================= */
+
+        .ai-suggestion-box {
+
+            padding:12px;
+
+            border:1px solid #bfdbfe;
+
+            border-radius:9px;
+
+            background:var(--blue-soft);
+
+        }
+
+
+        .ai-suggestion-header {
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:space-between;
+
+            gap:10px;
+
+            margin-bottom:8px;
+
+        }
+
+
+        .ai-suggestion-title {
+
+            display:flex;
+
+            align-items:center;
+
+            gap:6px;
+
+            color:#1d4ed8;
+
+            font-size:10px;
+
+            font-weight:750;
+
+        }
+
+
+        .ai-source-badge {
+
+            padding:4px 7px;
+
+            border-radius:999px;
+
+            background:#dbeafe;
+
+            color:#1d4ed8;
+
+            font-size:8px;
+
+            font-weight:750;
+
+        }
+
+
+        .ai-suggestion-text {
+
+            min-height:72px;
+
+            padding:10px;
+
+            border:1px solid #dbeafe;
+
+            border-radius:7px;
+
+            background:#ffffff;
+
+            color:#334155;
+
+            font-size:10px;
+
+            line-height:1.55;
+
+            white-space:pre-wrap;
+
+        }
+
+
+        .ai-suggestion-placeholder {
+
+            color:#94a3b8;
+
+            font-style:italic;
+
+        }
+
+
+        .ai-suggestion-actions {
+
+            display:grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:8px;
+
+            margin-top:8px;
+
+        }
+
+
+        .secondary-button {
+
+            min-height:35px;
+
+            display:inline-flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            gap:6px;
+
+            padding:7px 9px;
+
+            border:1px solid #bfdbfe;
+
+            border-radius:7px;
+
+            background:#ffffff;
+
+            color:#2563eb;
+
+            font-size:9px;
+
+            font-weight:750;
+
+            cursor:pointer;
+
+        }
+
+
+        .secondary-button:hover {
+
+            background:#eff6ff;
+
+        }
+
+
+        .secondary-button.primary {
+
+            border-color:var(--blue);
+
+            background:var(--blue);
+
+            color:#ffffff;
+
+        }
+
+
+        .secondary-button.primary:hover {
+
+            background:var(--blue-dark);
+
+        }
+
+
+        .secondary-button:disabled {
+
+            opacity:0.55;
+
+            cursor:not-allowed;
+
+        }
+
+
+        .ai-status-text {
+
+            margin-top:7px;
+
+            color:#64748b;
+
+            font-size:8px;
+
+            line-height:1.4;
 
         }
 
@@ -831,25 +1280,18 @@
            RIGHT-SIDE PANELS
         ========================================= */
 
-        .right-panels {
+        .right-column {
 
             display:grid;
 
-            gap:14px;
+            gap:13px;
 
         }
 
 
-        .panel-body {
+        .metric-row {
 
-            padding:14px 16px;
-
-        }
-
-
-        .analysis-item {
-
-            min-height:36px;
+            min-height:34px;
 
             display:flex;
 
@@ -857,36 +1299,35 @@
 
             justify-content:space-between;
 
-            gap:14px;
+            gap:12px;
 
-            padding:8px 0;
+            padding:7px 0;
 
-            border-bottom:1px solid #edf1f5;
+            border-bottom:
+                1px solid #edf1f5;
 
         }
 
 
-        .analysis-item:last-child {
+        .metric-row:last-child {
 
             border-bottom:0;
 
         }
 
 
-        .analysis-label {
+        .metric-label {
 
             color:#64748b;
 
-            font-size:10px;
+            font-size:9px;
 
-            font-weight:600;
+            font-weight:650;
 
         }
 
 
-        .badge-positive,
-        .badge-warning,
-        .badge-negative {
+        .status-badge {
 
             display:inline-flex;
 
@@ -900,45 +1341,43 @@
 
             border-radius:999px;
 
-            font-size:10px;
+            font-size:9px;
 
             font-weight:750;
 
-            text-align:center;
+        }
+
+
+        .status-badge.positive {
+
+            background:var(--green-soft);
+
+            color:var(--green);
 
         }
 
 
-        .badge-positive {
+        .status-badge.warning {
 
-            background:var(--sim-green-soft);
+            background:var(--orange-soft);
 
-            color:var(--sim-green);
-
-        }
-
-
-        .badge-warning {
-
-            background:var(--sim-orange-soft);
-
-            color:var(--sim-orange);
+            color:var(--orange);
 
         }
 
 
-        .badge-negative {
+        .status-badge.negative {
 
-            background:var(--sim-red-soft);
+            background:var(--red-soft);
 
-            color:var(--sim-red);
+            color:var(--red);
 
         }
 
 
         .knowledge-content {
 
-            padding:12px;
+            padding:11px;
 
             border:1px solid #bfdbfe;
 
@@ -948,7 +1387,7 @@
 
             color:#475569;
 
-            font-size:10px;
+            font-size:9px;
 
             line-height:1.55;
 
@@ -957,11 +1396,12 @@
 
         .knowledge-item {
 
-            margin-bottom:10px;
+            margin-bottom:9px;
 
-            padding-bottom:10px;
+            padding-bottom:9px;
 
-            border-bottom:1px solid #dbeafe;
+            border-bottom:
+                1px solid #dbeafe;
 
         }
 
@@ -979,44 +1419,85 @@
 
         .knowledge-item strong {
 
-            color:var(--sim-blue);
+            color:var(--blue);
+
+        }
+                /* =========================================
+           COACHING FEEDBACK
+        ========================================= */
+
+        .coaching-section {
+
+            margin-bottom:10px;
+
+            padding:10px;
+
+            border:1px solid var(--border);
+
+            border-radius:8px;
+
+            background:#f8fafc;
 
         }
 
 
-        .tip {
-
-            display:flex;
-
-            align-items:flex-start;
-
-            gap:8px;
-
-            margin-bottom:9px;
-
-            color:#475569;
-
-            font-size:10px;
-
-            line-height:1.5;
-
-        }
-
-
-        .tip:last-child {
+        .coaching-section:last-child {
 
             margin-bottom:0;
 
         }
 
 
-        .tip-icon {
+        .coaching-section-title {
 
-            width:17px;
+            margin-bottom:6px;
 
-            height:17px;
+            color:#475569;
 
-            flex:0 0 17px;
+            font-size:9px;
+
+            font-weight:800;
+
+            letter-spacing:0.35px;
+
+            text-transform:uppercase;
+
+        }
+
+
+        .coaching-item {
+
+            display:flex;
+
+            align-items:flex-start;
+
+            gap:7px;
+
+            margin-bottom:6px;
+
+            color:#475569;
+
+            font-size:9px;
+
+            line-height:1.5;
+
+        }
+
+
+        .coaching-item:last-child {
+
+            margin-bottom:0;
+
+        }
+
+
+        .coaching-icon {
+
+            width:16px;
+
+            height:16px;
+
+            flex:0 0 16px;
 
             display:grid;
 
@@ -1026,48 +1507,105 @@
 
             border-radius:50%;
 
-            background:var(--sim-blue-soft);
+            background:var(--green-soft);
 
-            color:var(--sim-blue);
+            color:var(--green);
 
-            font-size:9px;
+            font-size:8px;
 
             font-weight:800;
 
         }
 
 
-        /* =========================================
-           LIVE SUMMARY
-        ========================================= */
+        .coaching-icon.warning {
 
-        .summary-card {
+            background:var(--orange-soft);
 
-            margin-top:18px;
+            color:var(--orange);
 
         }
 
+
+        .coaching-icon.info {
+
+            background:var(--blue-soft);
+
+            color:var(--blue);
+
+        }
+
+
+        /* =========================================
+           ESCALATION PANEL
+        ========================================= */
+
+        .escalation-box {
+
+            padding:11px;
+
+            border:1px solid #fecaca;
+
+            border-radius:8px;
+
+            background:var(--red-soft);
+
+        }
+
+
+        .escalation-title {
+
+            display:flex;
+
+            align-items:center;
+
+            gap:6px;
+
+            margin-bottom:6px;
+
+            color:#b91c1c;
+
+            font-size:10px;
+
+            font-weight:800;
+
+        }
+
+
+        .escalation-text {
+
+            color:#7f1d1d;
+
+            font-size:9px;
+
+            line-height:1.5;
+
+        }
+
+
+        /* =========================================
+           SESSION SUMMARY
+        ========================================= */
 
         .summary-grid {
 
             display:grid;
 
-            grid-template-columns:repeat(3,minmax(0,1fr));
+            grid-template-columns:
+                repeat(3, minmax(0,1fr));
 
-            gap:12px;
-
-            padding:16px;
+            gap:11px;
 
         }
 
 
-        .summary-item {
+        .summary-card {
 
-            min-height:80px;
+            min-height:82px;
 
-            padding:13px;
+            padding:12px;
 
-            border:1px solid var(--sim-border);
+            border:1px solid var(--border);
 
             border-radius:8px;
 
@@ -1076,19 +1614,17 @@
         }
 
 
-        .summary-label {
+        .summary-title {
 
-            display:block;
-
-            margin-bottom:8px;
+            margin-bottom:7px;
 
             color:#64748b;
 
-            font-size:9px;
+            font-size:8px;
 
-            font-weight:700;
+            font-weight:750;
 
-            letter-spacing:.35px;
+            letter-spacing:0.35px;
 
             text-transform:uppercase;
 
@@ -1097,9 +1633,7 @@
 
         .summary-value {
 
-            display:block;
-
-            color:var(--sim-text);
+            color:var(--text);
 
             font-size:19px;
 
@@ -1110,33 +1644,38 @@
 
         .summary-note {
 
-            display:block;
-
-            margin-top:4px;
+            margin-top:3px;
 
             color:#94a3b8;
 
-            font-size:9px;
+            font-size:8px;
 
         }
 
 
-        .footer {
+        /* =========================================
+           SCROLLBAR
+        ========================================= */
 
-            padding:20px 0 4px;
+        .chat-area::-webkit-scrollbar {
 
-            color:#94a3b8;
-
-            font-size:9px;
-
-            text-align:center;
+            width:7px;
 
         }
 
 
-        .footer p {
+        .chat-area::-webkit-scrollbar-track {
 
-            margin:2px 0;
+            background:transparent;
+
+        }
+
+
+        .chat-area::-webkit-scrollbar-thumb {
+
+            border-radius:999px;
+
+            background:#cbd5e1;
 
         }
 
@@ -1147,30 +1686,31 @@
 
         @media(max-width:1180px) {
 
-            .sim-app {
+            .app-layout {
 
-                grid-template-columns:76px minmax(0,1fr);
+                grid-template-columns:
+                    76px minmax(0,1fr);
 
             }
 
 
-            .sim-sidebar {
+            .sidebar {
 
-                padding:18px 10px;
+                padding:17px 9px;
 
             }
 
 
             .sidebar-label,
-            .sidebar-menu-link span,
-            .session-info-card {
+            .sidebar-link span,
+            .session-card {
 
                 display:none;
 
             }
 
 
-            .sidebar-menu-link {
+            .sidebar-link {
 
                 justify-content:center;
 
@@ -1179,7 +1719,7 @@
             }
 
 
-            .sidebar-menu-link i {
+            .sidebar-link i {
 
                 width:auto;
 
@@ -1188,16 +1728,17 @@
             }
 
 
-            .sim-grid {
+            .main-grid {
 
                 grid-template-columns:1fr;
 
             }
 
 
-            .right-panels {
+            .right-column {
 
-                grid-template-columns:repeat(2,minmax(0,1fr));
+                grid-template-columns:
+                    repeat(2, minmax(0,1fr));
 
             }
 
@@ -1206,42 +1747,42 @@
 
         @media(max-width:780px) {
 
-            .sim-app {
+            .app-layout {
 
                 display:block;
 
             }
 
 
-            .sim-sidebar {
+            .sidebar {
 
                 display:none;
 
             }
 
 
-            .sim-main {
+            .main-content {
 
                 padding:14px;
 
             }
 
 
-            .sim-page-header {
+            .page-header {
 
                 flex-direction:column;
 
             }
 
 
-            .scenario-tags {
+            .session-tags {
 
                 justify-content:flex-start;
 
             }
 
 
-            .right-panels {
+            .right-column {
 
                 grid-template-columns:1fr;
 
@@ -1249,6 +1790,27 @@
 
 
             .summary-grid {
+
+                grid-template-columns:1fr;
+
+            }
+
+
+            .manual-message-row {
+
+                grid-template-columns:1fr;
+
+            }
+
+
+            .reply-area {
+
+                grid-template-columns:1fr;
+
+            }
+
+
+            .ai-suggestion-actions {
 
                 grid-template-columns:1fr;
 
@@ -1266,23 +1828,16 @@
 
         @media(max-width:520px) {
 
-            .sim-navbar-inner {
+            .navbar-inner {
 
-                padding:0 12px;
+                padding:0 11px;
 
             }
 
 
-            .live-pill {
+            .system-pill {
 
                 display:none;
-
-            }
-
-
-            .reply-box {
-
-                grid-template-columns:1fr;
 
             }
 
@@ -1304,2412 +1859,4231 @@
 <body>
 
 
-<!-- =========================================
-     TOP NAVBAR
-========================================= -->
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
 
-<nav class="sim-navbar">
+    <nav class="app-navbar">
 
-    <div class="sim-navbar-inner">
-
-        <a href="/"
-           class="sim-brand">
-
-            <span class="sim-brand-icon">
-
-                <i class="bi bi-bar-chart-fill"></i>
-
-            </span>
-
-            <span>
-
-                Support Coach
-
-            </span>
-
-        </a>
-
-
-        <div class="navbar-actions">
-
-            <span class="live-pill">
-
-                SYSTEM ONLINE
-
-            </span>
-
+        <div class="navbar-inner">
 
             <a href="/"
-               class="navbar-button">
+               class="brand">
 
-                <i class="bi bi-grid"></i>
+                <span class="brand-icon">
 
-                Dashboard
+                    <i class="bi bi-robot"></i>
+
+                </span>
+
+
+                <span>
+
+                    Support Coach
+
+                </span>
 
             </a>
 
 
-            <button type="button"
-                    id="endSessionButton"
-                    class="navbar-button"
-                    onclick="endSession()">
+            <div class="navbar-actions">
 
-                <i class="bi bi-stop-circle"></i>
+                <span class="system-pill">
 
-                End Session
-
-            </button>
-
-        </div>
-
-    </div>
-
-</nav>
-
-
-<!-- =========================================
-     APPLICATION
-========================================= -->
-
-<div class="sim-app">
-
-
-    <!-- SIDEBAR -->
-
-    <aside class="sim-sidebar">
-
-        <div class="sidebar-label">
-
-            Workspace
-
-        </div>
-
-
-        <a href="/"
-           class="sidebar-menu-link">
-
-            <i class="bi bi-grid-1x2"></i>
-
-            <span>
-
-                Dashboard
-
-            </span>
-
-        </a>
-        <a href="/session"
-           class="sidebar-menu-link">
-
-            <i class="bi bi-plus-square"></i>
-
-            <span>
-
-                New Session
-
-            </span>
-
-        </a>
-
-
-        <a href="/simulator"
-           class="sidebar-menu-link active">
-
-            <i class="bi bi-chat-square-text"></i>
-
-            <span>
-
-                Simulator
-
-            </span>
-
-        </a>
-
-
-        <a href="/#recentSessions"
-           class="sidebar-menu-link">
-
-            <i class="bi bi-file-earmark-bar-graph"></i>
-
-            <span>
-
-                Reports
-
-            </span>
-
-        </a>
-
-
-        <a href="/#knowledgeBase"
-           class="sidebar-menu-link">
-
-            <i class="bi bi-database"></i>
-
-            <span>
-
-                Knowledge Base
-
-            </span>
-
-        </a>
-
-
-        <div class="sidebar-label mt-4">
-
-            Current Session
-
-        </div>
-
-
-        <div class="session-info-card">
-
-            <h4 id="sidebarProduct">
-
-                Amazon Support
-
-            </h4>
-
-            <p>
-
-                <strong>Scenario:</strong>
-
-                <span id="sidebarScenario">
-
-                    Return Request
+                    SYSTEM ONLINE
 
                 </span>
 
-            </p>
 
-            <p>
+                <a href="/"
+                   class="navbar-button">
 
-                <strong>Persona:</strong>
+                    <i class="bi bi-grid"></i>
 
-                <span id="sidebarPersona">
+                    Dashboard
 
-                    Frustrated
+                </a>
 
-                </span>
 
-            </p>
+                <button type="button"
+                        id="endSessionButton"
+                        class="navbar-button">
 
-            <p>
+                    <i class="bi bi-stop-circle"></i>
 
-                <strong>Difficulty:</strong>
+                    End Session
 
-                <span id="sidebarDifficulty">
+                </button>
 
-                    Medium
-
-                </span>
-
-            </p>
+            </div>
 
         </div>
 
-    </aside>
-        <!-- MAIN CONTENT -->
-
-    <main class="sim-main">
+    </nav>
 
 
-        <!-- PAGE HEADER -->
+    <!-- =========================================
+         APPLICATION
+    ========================================= -->
 
-        <section class="sim-page-header">
+    <div class="app-layout">
 
-            <div>
 
-                <h1 class="sim-page-title">
+        <!-- =====================================
+             SIDEBAR
+        ====================================== -->
 
-                    Amazon Customer Support Simulator
+        <aside class="sidebar">
 
-                </h1>
+            <div class="sidebar-label">
 
-                <p class="sim-page-subtitle">
+                Workspace
 
-                    Real-time AI coaching environment for customer support training.
+            </div>
+
+
+            <a href="/"
+               class="sidebar-link">
+
+                <i class="bi bi-grid-1x2"></i>
+
+                <span>
+
+                    Dashboard
+
+                </span>
+
+            </a>
+
+
+            <a href="/session"
+               class="sidebar-link">
+
+                <i class="bi bi-plus-square"></i>
+
+                <span>
+
+                    New Session
+
+                </span>
+
+            </a>
+
+
+            <a href="/simulator"
+               class="sidebar-link active">
+
+                <i class="bi bi-chat-square-text"></i>
+
+                <span>
+
+                    Simulator
+
+                </span>
+
+            </a>
+
+
+            <a href="/#recentSessions"
+               class="sidebar-link">
+
+                <i class="bi bi-file-earmark-bar-graph"></i>
+
+                <span>
+
+                    Reports
+
+                </span>
+
+            </a>
+
+
+            <a href="/#knowledgeBase"
+               class="sidebar-link">
+
+                <i class="bi bi-database"></i>
+
+                <span>
+
+                    Knowledge Base
+
+                </span>
+
+            </a>
+
+
+            <div class="sidebar-label mt-4">
+
+                Current Session
+
+            </div>
+
+
+            <div class="session-card">
+
+                <h3 id="sidebarProduct">
+
+                    Amazon Support
+
+                </h3>
+
+
+                <p>
+
+                    <strong>Mode:</strong>
+
+                    <span id="sidebarMode">
+
+                        Simulator
+
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    <strong>Scenario:</strong>
+
+                    <span id="sidebarScenario">
+
+                        General Support
+
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    <strong>Persona:</strong>
+
+                    <span id="sidebarPersona">
+
+                        Regular Customer
+
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    <strong>Difficulty:</strong>
+
+                    <span id="sidebarDifficulty">
+
+                        Medium
+
+                    </span>
 
                 </p>
 
             </div>
 
+        </aside>
 
-            <div class="scenario-tags">
 
-                <span id="productBadge"
-                      class="scenario-tag">
+        <!-- =====================================
+             MAIN CONTENT START
+        ====================================== -->
 
-                    <i class="bi bi-shop"></i>
+        <main class="main-content">
+                        <!-- =================================
+                 PAGE HEADER
+            ================================== -->
 
-                    Amazon
+            <section class="page-header">
 
-                </span>
+                <div>
 
+                    <h1 class="page-title">
 
-                <span id="scenarioBadge"
-                      class="scenario-tag">
+                        AI Customer Support Simulator
 
-                    <i class="bi bi-arrow-return-left"></i>
+                    </h1>
 
-                    Return Request
 
-                </span>
+                    <p class="page-subtitle">
 
+                        Continuous AI customer conversation with real-time evaluation and coaching.
 
-                <span id="personaBadge"
-                      class="scenario-tag">
-
-                    <i class="bi bi-emoji-frown"></i>
-
-                    Frustrated
-
-                </span>
-
-
-                <span id="difficultyBadge"
-                      class="scenario-tag">
-
-                    <i class="bi bi-speedometer2"></i>
-
-                    Medium
-
-                </span>
-
-            </div>
-
-        </section>
-
-
-        <div id="pageError"
-             class="alert alert-danger d-none"
-             role="alert">
-
-        </div>
-
-
-        <!-- MAIN GRID -->
-
-        <section class="sim-grid">
-
-
-            <!-- LIVE CONVERSATION -->
-
-            <div>
-
-                <article class="sim-card conversation-card">
-
-                    <div class="sim-card-header">
-
-                        <div class="card-heading">
-
-                            <div class="card-icon">
-
-                                <i class="bi bi-chat-dots"></i>
-
-                            </div>
-
-                            <div>
-
-                                <h2 class="card-title-main">
-
-                                    Live Conversation
-
-                                </h2>
-
-                                <p class="card-subtitle">
-
-                                    Respond professionally and resolve the customer issue.
-
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-                        <span id="sessionStatusBadge"
-                              class="turn-pill">
-
-                            Session Active
-
-                        </span>
-
-                    </div>
-
-
-                    <div id="chatArea"
-                         class="chat-area">
-
-                        <div class="customer-message">
-
-                            <div class="customer-name">
-
-                                <i class="bi bi-person-circle"></i>
-
-                                Customer
-
-                            </div>
-
-                            <p id="initialCustomerMessage">
-
-                                Loading customer message...
-
-                            </p>
-
-                            <span class="message-time">
-
-                                Session started
-
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="reply-box">
-
-                        <input id="agentReplyInput"
-                               class="form-control"
-                               placeholder="Type your response..."
-                               autocomplete="off">
-
-
-                        <button id="sendReplyButton"
-                                type="button"
-                                onclick="sendReply()"
-                                class="simulator-btn">
-
-                            <span id="sendButtonText">
-
-                                Send
-
-                            </span>
-
-                            <span id="sendButtonLoader"
-                                  class="spinner-border spinner-border-sm ms-2 d-none"
-                                  role="status"
-                                  aria-hidden="true">
-
-                            </span>
-
-                        </button>
-
-                    </div>
-
-                </article>
-
-
-                <!-- LIVE SUMMARY -->
-
-                <article class="sim-card summary-card">
-
-                    <div class="sim-card-header">
-
-                        <div class="card-heading">
-
-                            <div class="card-icon">
-
-                                <i class="bi bi-activity"></i>
-
-                            </div>
-
-                            <div>
-
-                                <h2 class="card-title-main">
-
-                                    Live Session Summary
-
-                                </h2>
-
-                                <p class="card-subtitle">
-
-                                    Session-level coaching metrics
-
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-                        <span class="turn-pill">
-
-                            Turn
-
-                            <span id="turnNumber">
-
-                                1
-
-                            </span>
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="summary-grid">
-
-                        <div class="summary-item">
-
-                            <span class="summary-label">
-
-                                Total Turns
-
-                            </span>
-
-                            <span id="totalTurns"
-                                  class="summary-value">
-
-                                0
-
-                            </span>
-
-                            <span class="summary-note">
-
-                                Agent replies submitted
-
-                            </span>
-
-                        </div>
-
-
-                        <div class="summary-item">
-
-                            <span class="summary-label">
-
-                                Average Score
-
-                            </span>
-
-                            <span id="averageScore"
-                                  class="summary-value">
-
-                                0
-
-                            </span>
-
-                            <span class="summary-note">
-
-                                Across response criteria
-
-                            </span>
-
-                        </div>
-
-
-                        <div class="summary-item">
-
-                            <span class="summary-label">
-
-                                Escalation Risk
-
-                            </span>
-
-                            <span id="escalationRisk"
-                                  class="summary-value">
-
-                                Waiting
-
-                            </span>
-
-                            <span class="summary-note">
-
-                                Based on current interaction
-
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-
-            <!-- RIGHT SIDE PANELS -->
-
-            <aside class="right-panels">
-
-
-                <!-- CUSTOMER ANALYSIS -->
-
-                <article class="sim-card">
-
-                    <div class="sim-card-header">
-
-                        <div class="card-heading">
-
-                            <div class="card-icon">
-
-                                <i class="bi bi-person-lines-fill"></i>
-
-                            </div>
-
-                            <div>
-
-                                <h2 class="card-title-main">
-
-                                    Customer Analysis
-
-                                </h2>
-
-                                <p class="card-subtitle">
-
-                                    Intent and emotional state
-
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="panel-body"
-                         id="analysis">
-
-                        <div class="analysis-item">
-
-                            <span class="analysis-label">
-
-                                Intent
-
-                            </span>
-
-                            <span id="intentValue"
-                                  class="badge-warning">
-
-                                Waiting
-
-                            </span>
-
-                        </div>
-
-
-                        <div class="analysis-item">
-
-                            <span class="analysis-label">
-
-                                Sentiment
-
-                            </span>
-
-                            <span id="sentimentValue"
-                                  class="badge-warning">
-
-                                Waiting
-
-                            </span>
-
-                        </div>
-
-
-                        <div class="analysis-item">
-
-                            <span class="analysis-label">
-
-                                Frustration
-
-                            </span>
-
-                            <span id="frustrationValue"
-                                  class="badge-warning">
-
-                                Waiting
-
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- RESPONSE EVALUATION -->
-
-                <article class="sim-card">
-
-                    <div class="sim-card-header">
-
-                        <div class="card-heading">
-
-                            <div class="card-icon">
-
-                                <i class="bi bi-clipboard-data"></i>
-
-                            </div>
-
-                            <div>
-
-                                <h2 class="card-title-main">
-
-                                    Response Evaluation
-
-                                </h2>
-
-                                <p class="card-subtitle">
-
-                                    Quality of the latest agent response
-
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="panel-body">
-
-                        <div class="analysis-item">
-
-                            <span class="analysis-label">
-
-                                Empathy
-
-                            </span>
-
-                            <span id="empathyScore"
-                                  class="badge-warning">
-
-                                Waiting
-
-                            </span>
-
-                        </div>
-
-
-                        <div class="analysis-item">
-
-                            <span class="analysis-label">
-
-                                Tone
-
-                            </span>
-
-                            <span id="toneScore"
-                                  class="badge-warning">
-
-                                Waiting
-
-                            </span>
-
-                        </div>
-
-
-                        <div class="analysis-item">
-
-                            <span class="analysis-label">
-
-                                Clarity
-
-                            </span>
-
-                            <span id="clarityScore"
-                                  class="badge-warning">
-
-                                Waiting
-
-                            </span>
-
-                        </div>
-
-
-                        <div class="analysis-item">
-
-                            <span class="analysis-label">
-
-                                Professionalism
-
-                            </span>
-
-                            <span id="professionalismScore"
-                                  class="badge-warning">
-
-                                Waiting
-
-                            </span>
-
-                        </div>
-
-
-                        <div class="analysis-item">
-
-                            <span class="analysis-label">
-
-                                Resolution
-
-                            </span>
-
-                            <span id="resolutionScore"
-                                  class="badge-warning">
-
-                                Waiting
-
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </article>
-<!-- KNOWLEDGE -->
-
-                <article class="sim-card">
-
-                    <div class="sim-card-header">
-
-                        <div class="card-heading">
-
-                            <div class="card-icon">
-
-                                <i class="bi bi-journal-check"></i>
-
-                            </div>
-
-                            <div>
-
-                                <h2 class="card-title-main">
-
-                                    Knowledge Recommendation
-
-                                </h2>
-
-                                <p class="card-subtitle">
-
-                                    Relevant policy or support guidance
-
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="panel-body">
-
-                        <div id="knowledgeContent"
-                             class="knowledge-content">
-
-                            Waiting for the first response evaluation...
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- COACHING -->
-
-                <article class="sim-card">
-
-                    <div class="sim-card-header">
-
-                        <div class="card-heading">
-
-                            <div class="card-icon">
-
-                                <i class="bi bi-lightbulb"></i>
-
-                            </div>
-
-                            <div>
-
-                                <h2 class="card-title-main">
-
-                                    AI Coaching Feedback
-
-                                </h2>
-
-                                <p class="card-subtitle">
-
-                                    Actionable suggestions for improvement
-
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="panel-body"
-                         id="coachingTips">
-
-                        <div class="tip">
-
-                            <div class="tip-icon">
-
-                                ✓
-
-                            </div>
-
-                            <span>
-
-                                Show empathy towards the customer.
-
-                            </span>
-
-                        </div>
-
-
-                        <div class="tip">
-
-                            <div class="tip-icon">
-
-                                ✓
-
-                            </div>
-
-                            <span>
-
-                                Acknowledge the customer's concern.
-
-                            </span>
-
-                        </div>
-
-
-                        <div class="tip">
-
-                            <div class="tip-icon">
-
-                                ✓
-
-                            </div>
-
-                            <span>
-
-                                Provide a clear next step.
-
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-            </aside>
-
-        </section>
-
-
-        <footer class="footer">
-
-            <p>
-
-                AI Customer Support Coaching Assistant
-
-            </p>
-
-            <p>
-
-                Infosys Internship Project • Vidzai Digital
-
-            </p>
-
-        </footer>
-
-    </main>
-
-</div>
-<!-- =========================================
-     JAVASCRIPT
-========================================= -->
-
-<script>
-
-const sessionId =
-    sessionStorage.getItem("session_id");
-
-
-let currentCustomerMessage =
-    sessionStorage.getItem("current_customer_message");
-
-
-let sessionData = {};
-
-
-let currentTurn = 1;
-
-
-
-document.addEventListener(
-
-    "DOMContentLoaded",
-
-    function () {
-
-
-        loadSession();
-
-
-        const replyInput =
-            document.getElementById(
-                "agentReplyInput"
-            );
-
-
-        replyInput.addEventListener(
-
-            "keydown",
-
-            function (event) {
-
-
-                if (
-                    event.key === "Enter" &&
-                    !event.shiftKey
-                ) {
-
-
-                    event.preventDefault();
-
-
-                    sendReply();
-
-
-                }
-
-
-            }
-
-        );
-
-
-    }
-
-);
-
-
-
-function loadSession() {
-
-
-    const storedSessionData =
-        sessionStorage.getItem(
-            "session_data"
-        );
-
-
-    if (!sessionId) {
-
-
-        showPageError(
-
-            "No active session was found. Please create a new session."
-
-        );
-
-
-        disableReplyBox();
-
-
-        return;
-
-
-    }
-
-
-    if (storedSessionData) {
-
-
-        try {
-
-
-            sessionData =
-                JSON.parse(
-                    storedSessionData
-                );
-
-
-        } catch (error) {
-
-
-            sessionData = {};
-
-
-        }
-
-
-    }
-
-
-    if (!currentCustomerMessage) {
-
-
-        currentCustomerMessage =
-            sessionData.current_customer_message ||
-            "Hello, I need help with my order.";
-
-
-    }
-
-
-    const product =
-        sessionData.product ||
-        "Amazon";
-
-
-    const scenario =
-        sessionData.scenario ||
-        "General Support";
-
-
-    const persona =
-        sessionData.customer_persona ||
-        "Regular Customer";
-
-
-    const difficulty =
-        sessionData.difficulty ||
-        "Medium";
-
-
-    document.getElementById(
-        "initialCustomerMessage"
-    ).textContent =
-        currentCustomerMessage;
-
-
-    document.getElementById(
-        "productBadge"
-    ).innerHTML =
-        `<i class="bi bi-shop"></i> ${escapeHtml(product)}`;
-
-
-    document.getElementById(
-        "scenarioBadge"
-    ).innerHTML =
-        `<i class="bi bi-arrow-return-left"></i> ${escapeHtml(scenario)}`;
-
-
-    document.getElementById(
-        "personaBadge"
-    ).innerHTML =
-        `<i class="bi bi-emoji-frown"></i> ${escapeHtml(persona)}`;
-
-
-    document.getElementById(
-        "difficultyBadge"
-    ).innerHTML =
-        `<i class="bi bi-speedometer2"></i> ${escapeHtml(difficulty)}`;
-
-
-    document.getElementById(
-        "sidebarProduct"
-    ).textContent =
-        `${product} Support`;
-
-
-    document.getElementById(
-        "sidebarScenario"
-    ).textContent =
-        scenario;
-
-
-    document.getElementById(
-        "sidebarPersona"
-    ).textContent =
-        persona;
-
-
-    document.getElementById(
-        "sidebarDifficulty"
-    ).textContent =
-        difficulty;
-
-
-}
-
-
-
-async function sendReply() {
-
-
-    const replyInput =
-        document.getElementById(
-            "agentReplyInput"
-        );
-
-
-    const agentReply =
-        replyInput.value.trim();
-
-
-    if (!sessionId) {
-
-
-        showPageError(
-
-            "Session ID is missing. Please start a new session."
-
-        );
-
-
-        return;
-
-
-    }
-
-
-    if (!currentCustomerMessage) {
-
-
-        showPageError(
-
-            "Customer message is unavailable."
-
-        );
-
-
-        return;
-
-
-    }
-
-
-    if (!agentReply) {
-
-
-        showPageError(
-
-            "Please enter a response before sending."
-
-        );
-
-
-        replyInput.focus();
-
-
-        return;
-
-
-    }
-
-
-    clearPageError();
-
-
-    setSendingState(true);
-
-
-    appendAgentMessage(
-        agentReply
-    );
-
-
-    replyInput.value = "";
-
-
-    try {
-
-
-        const response =
-            await fetch(
-
-                "/process-reply",
-
-                {
-
-
-                    method:"POST",
-
-
-                    headers: {
-
-
-                        "Content-Type":
-                            "application/json"
-
-
-                    },
-
-
-                    body:
-                        JSON.stringify({
-
-
-                            session_id:
-                                sessionId,
-
-
-                            customer_message:
-                                currentCustomerMessage,
-
-
-                            agent_reply:
-                                agentReply
-
-
-                        })
-
-
-                }
-
-            );
-
-
-        const result =
-            await response.json();
-
-
-        if (
-            !response.ok ||
-            result.status !== "success"
-        ) {
-
-
-            throw new Error(
-
-                result.message ||
-                "Unable to evaluate the response."
-
-            );
-
-
-        }
-
-
-        updateCustomerAnalysis(
-
-            result.analysis || {}
-
-        );
-
-
-        updateResponseEvaluation(
-
-            result.evaluation || {}
-
-        );
-
-
-        updateKnowledge(
-
-            result.knowledge
-
-        );
-
-
-        updateCoachingTips(
-
-            result.evaluation || {}
-
-        );
-
-
-        updateLiveSummary(
-
-            result.live_summary || {}
-
-        );
-
-
-        currentCustomerMessage =
-            result.next_customer_message ||
-            "Could you please explain the next step?";
-
-
-        sessionStorage.setItem(
-
-            "current_customer_message",
-
-            currentCustomerMessage
-
-        );
-
-
-        currentTurn += 1;
-
-
-        document.getElementById(
-            "turnNumber"
-        ).textContent =
-            currentTurn;
-
-
-        setTimeout(
-
-            function () {
-
-
-                appendCustomerMessage(
-
-                    currentCustomerMessage
-
-                );
-
-
-            },
-
-            500
-
-        );
-
-
-    } catch (error) {
-
-
-        showPageError(
-
-            error.message ||
-            "Something went wrong while processing the response."
-
-        );
-
-
-    } finally {
-
-
-        setSendingState(false);
-
-
-        replyInput.focus();
-
-
-    }
-
-
-}
-
-
-
-function setStatusBadge(
-
-    elementId,
-
-    value
-
-) {
-
-
-    const element =
-        document.getElementById(
-            elementId
-        );
-
-
-    const text =
-        value ||
-        "Unknown";
-
-
-    const lower =
-        String(text).toLowerCase();
-
-
-    element.textContent =
-        text;
-
-
-    element.className = "";
-
-
-    if (
-        lower.includes("good") ||
-        lower.includes("positive") ||
-        lower.includes("professional") ||
-        lower.includes("clear") ||
-        lower.includes("low") ||
-        lower.includes("resolved")
-    ) {
-
-
-        element.classList.add(
-            "badge-positive"
-        );
-
-
-    } else if (
-        lower.includes("negative") ||
-        lower.includes("high") ||
-        lower.includes("poor") ||
-        lower.includes("critical")
-    ) {
-
-
-        element.classList.add(
-            "badge-negative"
-        );
-
-
-    } else {
-
-
-        element.classList.add(
-            "badge-warning"
-        );
-
-
-    }
-
-
-}
-
-
-
-function updateCustomerAnalysis(
-    analysis
-) {
-
-
-    setStatusBadge(
-
-        "intentValue",
-
-        analysis.intent ||
-        "Unknown"
-
-    );
-
-
-    setStatusBadge(
-
-        "sentimentValue",
-
-        analysis.sentiment ||
-        "Unknown"
-
-    );
-
-
-    setStatusBadge(
-
-        "frustrationValue",
-
-        analysis.frustration_level ||
-        "Low"
-
-    );
-
-
-}
-
-
-
-function updateResponseEvaluation(
-    evaluation
-) {
-
-
-    setStatusBadge(
-
-        "empathyScore",
-
-        evaluation.empathy ||
-        evaluation.empathy_score ||
-        "N/A"
-
-    );
-
-
-    setStatusBadge(
-
-        "toneScore",
-
-        evaluation.tone ||
-        evaluation.tone_score ||
-        "N/A"
-
-    );
-
-
-    setStatusBadge(
-
-        "clarityScore",
-
-        evaluation.clarity ||
-        evaluation.clarity_score ||
-        "N/A"
-
-    );
-
-
-    setStatusBadge(
-
-        "professionalismScore",
-
-        evaluation.professionalism ||
-        evaluation.professionalism_score ||
-        "N/A"
-
-    );
-
-
-    setStatusBadge(
-
-        "resolutionScore",
-
-        evaluation.resolution_score ||
-        evaluation.resolution ||
-        "N/A"
-
-    );
-
-
-}
-
-
-
-function updateKnowledge(
-    knowledge
-) {
-
-
-    const knowledgeBox =
-        document.getElementById(
-            "knowledgeContent"
-        );
-
-
-    if (
-        !knowledge ||
-        Object.keys(knowledge).length === 0
-    ) {
-
-
-        knowledgeBox.innerHTML =
-
-            "<div class='knowledge-item'>No recommendation available.</div>";
-
-
-        return;
-
-
-    }
-
-
-    let html = "";
-
-
-    if (
-        typeof knowledge === "string"
-    ) {
-
-
-        html = `
-
-            <div class="knowledge-item">
-
-                ${escapeHtml(knowledge)}
-
-            </div>
-
-        `;
-
-
-    } else {
-
-
-        for (
-            const key in knowledge
-        ) {
-
-
-            html += `
-
-            <div class="knowledge-item">
-
-                <strong>${escapeHtml(key)}</strong>
-
-                <br>
-
-                ${formatKnowledgeValue(
-                    knowledge[key]
-                )}
-
-            </div>
-
-            `;
-
-
-        }
-
-
-    }
-
-
-    knowledgeBox.innerHTML =
-        html;
-
-
-}
-
-
-
-function formatKnowledgeValue(
-    value
-) {
-
-
-    if (
-        Array.isArray(value)
-    ) {
-
-
-        return value
-            .map(
-                item =>
-                    escapeHtml(
-                        String(item)
-                    )
-            )
-            .join("<br>");
-
-
-    }
-
-
-    if (
-        typeof value === "object" &&
-        value !== null
-    ) {
-
-
-        return Object.entries(value)
-            .map(
-
-                function (
-                    [key, item]
-                ) {
-
-
-                    return `
-
-                        <strong>
-                            ${escapeHtml(key)}
-                        </strong>:
-                        ${escapeHtml(
-                            String(item)
-                        )}
-
-                    `;
-
-
-                }
-
-            )
-            .join("<br>");
-
-
-    }
-
-
-    return escapeHtml(
-        String(value)
-    );
-
-
-}
-
-
-
-function updateCoachingTips(
-    evaluation
-) {
-
-
-    const coachingPanel =
-        document.getElementById(
-            "coachingTips"
-        );
-
-
-    coachingPanel.innerHTML = "";
-
-
-    const tips = [];
-
-
-    const empathy =
-        String(
-            evaluation.empathy ||
-            evaluation.empathy_score ||
-            ""
-        ).toLowerCase();
-
-
-    const tone =
-        String(
-            evaluation.tone ||
-            evaluation.tone_score ||
-            ""
-        ).toLowerCase();
-
-
-    const clarity =
-        String(
-            evaluation.clarity ||
-            evaluation.clarity_score ||
-            ""
-        ).toLowerCase();
-
-
-    const professionalism =
-        String(
-            evaluation.professionalism ||
-            evaluation.professionalism_score ||
-            ""
-        ).toLowerCase();
-
-
-    const resolution =
-        String(
-            evaluation.resolution_score ||
-            evaluation.resolution ||
-            ""
-        ).toLowerCase();
-
-
-    if (
-        empathy !== "good" &&
-        empathy !== "excellent"
-    ) {
-
-
-        tips.push(
-
-            "Show more empathy towards the customer."
-
-        );
-
-
-    }
-
-
-    if (
-        tone !== "professional" &&
-        tone !== "good"
-    ) {
-
-
-        tips.push(
-
-            "Maintain a polite and professional tone."
-
-        );
-
-
-    }
-
-
-    if (
-        clarity !== "clear" &&
-        clarity !== "good"
-    ) {
-
-
-        tips.push(
-
-            "Provide clearer and more specific instructions."
-
-        );
-
-
-    }
-
-
-    if (
-        professionalism === "poor" ||
-        professionalism === "needs improvement"
-    ) {
-
-
-        tips.push(
-
-            "Avoid casual language and keep the response professional."
-
-        );
-
-
-    }
-
-
-    if (
-        resolution === "poor" ||
-        resolution === "low"
-    ) {
-
-
-        tips.push(
-
-            "Include a specific solution or actionable next step."
-
-        );
-
-
-    }
-
-
-    if (
-        tips.length === 0
-    ) {
-
-
-        tips.push(
-
-            "Excellent response! Keep maintaining the same quality."
-
-        );
-
-
-    }
-
-
-    tips.forEach(
-
-        function (tip) {
-
-
-            coachingPanel.innerHTML += `
-
-            <div class="tip">
-
-                <div class="tip-icon">
-
-                    ✓
+                    </p>
 
                 </div>
 
-                <span>
 
-                    ${escapeHtml(tip)}
+                <div class="session-tags">
 
-                </span>
+                    <span id="productBadge"
+                          class="session-tag">
+
+                        <i class="bi bi-shop"></i>
+
+                        Amazon
+
+                    </span>
+
+
+                    <span id="scenarioBadge"
+                          class="session-tag">
+
+                        <i class="bi bi-chat-left-text"></i>
+
+                        General Support
+
+                    </span>
+
+
+                    <span id="personaBadge"
+                          class="session-tag">
+
+                        <i class="bi bi-person"></i>
+
+                        Regular Customer
+
+                    </span>
+
+
+                    <span id="difficultyBadge"
+                          class="session-tag">
+
+                        <i class="bi bi-speedometer2"></i>
+
+                        Medium
+
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 PAGE ERROR
+            ================================== -->
+
+            <div id="pageError"
+                 class="alert alert-danger d-none"
+                 role="alert">
 
             </div>
 
-            `;
 
+            <!-- =================================
+                 MAIN GRID
+            ================================== -->
+
+            <section class="main-grid">
+
+
+                <!-- =================================
+                     LEFT COLUMN
+                ================================== -->
+
+                <div>
+
+
+                    <!-- =============================
+                         LIVE CONVERSATION
+                    ============================== -->
+
+                    <article class="card-panel conversation-card">
+
+                        <div class="card-header-custom">
+
+                            <div class="card-heading">
+
+                                <div class="card-icon">
+
+                                    <i class="bi bi-chat-dots"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <h2 class="card-title-custom">
+
+                                        Live AI Conversation
+
+                                    </h2>
+
+
+                                    <p class="card-subtitle-custom">
+
+                                        Messages are appended continuously without replacing earlier turns.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <span id="sessionStatusBadge"
+                                  class="status-pill">
+
+                                Session Active
+
+                            </span>
+
+                        </div>
+
+
+                        <div id="chatArea"
+                             class="chat-area">
+
+                            <div id="initialCustomerBubble"
+                                 class="customer-message">
+
+                                <div class="message-name">
+
+                                    <i class="bi bi-person-circle"></i>
+
+                                    Customer
+
+                                </div>
+
+
+                                <p id="initialCustomerMessage">
+
+                                    Loading AI customer message...
+
+                                </p>
+
+
+                                <span class="message-time">
+
+                                    Session started
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================
+                             MANUAL MODE CONTROLS
+                        ========================== -->
+
+                        <div id="manualModeControls"
+                             class="scenario-controls d-none">
+
+                            <div class="scenario-controls-title">
+
+                                <span>
+
+                                    <i class="bi bi-pencil-square"></i>
+
+                                    Manual Customer Message
+
+                                </span>
+
+
+                                <button type="button"
+                                        id="generateScenarioMessageButton"
+                                        class="new-message-button"
+                                        onclick="generateScenarioMessage()">
+
+                                    <i class="bi bi-stars"></i>
+
+                                    Generate AI Message
+
+                                </button>
+
+                            </div>
+
+
+                            <div class="manual-message-row">
+
+                                <textarea id="manualCustomerMessage"
+                                          rows="3"
+                                          placeholder="Type your own customer message or generate a fresh AI message for the selected scenario."></textarea>
+
+
+                                <button type="button"
+                                        id="useManualMessageButton"
+                                        class="manual-action-button"
+                                        onclick="useManualCustomerMessage()">
+
+                                    <i class="bi bi-check2-circle"></i>
+
+                                    Add to Chat
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================
+                             AGENT REPLY
+                        ========================== -->
+
+                        <div class="reply-area">
+
+                            <input id="agentReplyInput"
+                                   type="text"
+                                   placeholder="Type your support reply or use the AI agent suggestion..."
+                                   autocomplete="off">
+
+
+                            <button type="button"
+                                    id="sendReplyButton"
+                                    class="primary-button"
+                                    onclick="sendReply()">
+
+                                <span id="sendButtonText">
+
+                                    Send
+
+                                </span>
+
+
+                                <span id="sendButtonLoader"
+                                      class="spinner-border spinner-border-sm d-none"
+                                      role="status"
+                                      aria-hidden="true">
+
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- =============================
+                         LIVE SESSION SUMMARY
+                    ============================== -->
+
+                    <article class="card-panel mt-3">
+
+                        <div class="card-header-custom">
+
+                            <div class="card-heading">
+
+                                <div class="card-icon">
+
+                                    <i class="bi bi-activity"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <h2 class="card-title-custom">
+
+                                        Live Session Summary
+
+                                    </h2>
+
+
+                                    <p class="card-subtitle-custom">
+
+                                        Updated after each support turn.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <span class="status-pill">
+
+                                Turn
+
+                                <span id="turnNumber"
+                                      class="ms-1">
+
+                                    1
+
+                                </span>
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="panel-body">
+
+                            <div class="summary-grid">
+
+                                <div class="summary-card">
+
+                                    <div class="summary-title">
+
+                                        Total Turns
+
+                                    </div>
+
+
+                                    <div id="totalTurns"
+                                         class="summary-value">
+
+                                        0
+
+                                    </div>
+
+
+                                    <div class="summary-note">
+
+                                        Agent replies submitted
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="summary-card">
+
+                                    <div class="summary-title">
+
+                                        Average Score
+
+                                    </div>
+
+
+                                    <div id="averageScore"
+                                         class="summary-value">
+
+                                        0
+
+                                    </div>
+
+
+                                    <div class="summary-note">
+
+                                        Latest evaluation average
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="summary-card">
+
+                                    <div class="summary-title">
+
+                                        Escalation Risk
+
+                                    </div>
+
+
+                                    <div id="escalationRisk"
+                                         class="summary-value">
+
+                                        Waiting
+
+                                    </div>
+
+
+                                    <div class="summary-note">
+
+                                        Current customer risk
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <!-- =================================
+                     RIGHT COLUMN START
+                ================================== -->
+
+                <aside class="right-column">
+                                        <!-- =========================
+                         CUSTOMER ANALYSIS
+                    ========================== -->
+
+                    <article class="card-panel">
+
+                        <div class="card-header-custom">
+
+                            <div class="card-heading">
+
+                                <div class="card-icon">
+
+                                    <i class="bi bi-person-lines-fill"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <h2 class="card-title-custom">
+
+                                        Customer Analysis
+
+                                    </h2>
+
+
+                                    <p class="card-subtitle-custom">
+
+                                        Intent, sentiment, and frustration level.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="panel-body">
+
+                            <div class="metric-row">
+
+                                <span class="metric-label">
+
+                                    Intent
+
+                                </span>
+
+
+                                <span id="intentValue"
+                                      class="status-badge warning">
+
+                                    Waiting
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="metric-row">
+
+                                <span class="metric-label">
+
+                                    Sentiment
+
+                                </span>
+
+
+                                <span id="sentimentValue"
+                                      class="status-badge warning">
+
+                                    Waiting
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="metric-row">
+
+                                <span class="metric-label">
+
+                                    Frustration
+
+                                </span>
+
+
+                                <span id="frustrationValue"
+                                      class="status-badge warning">
+
+                                    Waiting
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- =========================
+                         RESPONSE EVALUATION
+                    ========================== -->
+
+                    <article class="card-panel">
+
+                        <div class="card-header-custom">
+
+                            <div class="card-heading">
+
+                                <div class="card-icon">
+
+                                    <i class="bi bi-clipboard-data"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <h2 class="card-title-custom">
+
+                                        Response Evaluation
+
+                                    </h2>
+
+
+                                    <p class="card-subtitle-custom">
+
+                                        Latest support-agent reply scores.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="panel-body">
+
+                            <div class="metric-row">
+
+                                <span class="metric-label">
+
+                                    Empathy
+
+                                </span>
+
+
+                                <span id="empathyScore"
+                                      class="status-badge warning">
+
+                                    Waiting
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="metric-row">
+
+                                <span class="metric-label">
+
+                                    Tone
+
+                                </span>
+
+
+                                <span id="toneScore"
+                                      class="status-badge warning">
+
+                                    Waiting
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="metric-row">
+
+                                <span class="metric-label">
+
+                                    Clarity
+
+                                </span>
+
+
+                                <span id="clarityScore"
+                                      class="status-badge warning">
+
+                                    Waiting
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="metric-row">
+
+                                <span class="metric-label">
+
+                                    Professionalism
+
+                                </span>
+
+
+                                <span id="professionalismScore"
+                                      class="status-badge warning">
+
+                                    Waiting
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="metric-row">
+
+                                <span class="metric-label">
+
+                                    Resolution
+
+                                </span>
+
+
+                                <span id="resolutionScore"
+                                      class="status-badge warning">
+
+                                    Waiting
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- =========================
+                         KNOWLEDGE RECOMMENDATION
+                    ========================== -->
+
+                    <article class="card-panel">
+
+                        <div class="card-header-custom">
+
+                            <div class="card-heading">
+
+                                <div class="card-icon">
+
+                                    <i class="bi bi-journal-check"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <h2 class="card-title-custom">
+
+                                        Knowledge Recommendation
+
+                                    </h2>
+
+
+                                    <p class="card-subtitle-custom">
+
+                                        Relevant policy and support guidance.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="panel-body">
+
+                            <div id="knowledgeContent"
+                                 class="knowledge-content">
+
+                                Waiting for the first conversation turn...
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- =========================
+                         AI AGENT SUGGESTION
+                    ========================== -->
+
+                    <article class="card-panel">
+
+                        <div class="card-header-custom">
+
+                            <div class="card-heading">
+
+                                <div class="card-icon">
+
+                                    <i class="bi bi-robot"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <h2 class="card-title-custom">
+
+                                        AI Agent Suggestion
+
+                                    </h2>
+
+
+                                    <p class="card-subtitle-custom">
+
+                                        Generate a reply for the active customer message.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="panel-body">
+
+                            <div class="ai-suggestion-box">
+
+                                <div class="ai-suggestion-header">
+
+                                    <div class="ai-suggestion-title">
+
+                                        <i class="bi bi-stars"></i>
+
+                                        Suggested Reply
+
+                                    </div>
+
+
+                                    <span id="aiSuggestionSource"
+                                          class="ai-source-badge">
+
+                                        GEMINI AI
+
+                                    </span>
+
+                                </div>
+
+
+                                <div id="aiSuggestionText"
+                                     class="ai-suggestion-text">
+
+                                    <span class="ai-suggestion-placeholder">
+
+                                        Generate an AI support reply for the current customer message.
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="ai-suggestion-actions">
+
+                                    <button type="button"
+                                            id="generateSuggestionButton"
+                                            class="secondary-button"
+                                            onclick="generateSuggestedReply()">
+
+                                        <i class="bi bi-arrow-clockwise"></i>
+
+                                        Generate Reply
+
+                                    </button>
+
+
+                                    <button type="button"
+                                            id="useSuggestionButton"
+                                            class="secondary-button primary"
+                                            onclick="useSuggestedReply()"
+                                            disabled>
+
+                                        <i class="bi bi-check2-circle"></i>
+
+                                        Use AI Reply
+
+                                    </button>
+
+                                </div>
+
+
+                                <div id="aiSuggestionStatus"
+                                     class="ai-status-text">
+
+                                    You can use, edit, or ignore the AI-generated reply.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- =========================
+                         ESCALATION RISK
+                    ========================== -->
+
+                    <article id="escalationPanel"
+                             class="card-panel d-none">
+
+                        <div class="card-header-custom">
+
+                            <div class="card-heading">
+
+                                <div class="card-icon">
+
+                                    <i class="bi bi-exclamation-triangle"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <h2 class="card-title-custom">
+
+                                        Escalation Risk
+
+                                    </h2>
+
+
+                                    <p class="card-subtitle-custom">
+
+                                        Customer escalation monitoring.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="panel-body">
+
+                            <div class="escalation-box">
+
+                                <div class="escalation-title">
+
+                                    <i class="bi bi-exclamation-triangle-fill"></i>
+
+                                    <span id="escalationLevel">
+
+                                        High Risk
+
+                                    </span>
+
+                                </div>
+
+
+                                <div id="escalationReason"
+                                     class="escalation-text">
+
+                                    Waiting for escalation analysis...
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- =========================
+                         AI COACHING FEEDBACK
+                    ========================== -->
+
+                    <article class="card-panel">
+
+                        <div class="card-header-custom">
+
+                            <div class="card-heading">
+
+                                <div class="card-icon">
+
+                                    <i class="bi bi-lightbulb"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <h2 class="card-title-custom">
+
+                                        AI Coaching Feedback
+
+                                    </h2>
+
+
+                                    <p class="card-subtitle-custom">
+
+                                        Strengths and practical improvement tips.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="panel-body">
+
+                            <div id="coachingContent">
+
+                                <div class="knowledge-content">
+
+                                    Submit a support reply to receive coaching feedback.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </aside>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================================
+         JAVASCRIPT START
+    ========================================= -->
+
+    <script>
+
+        const sessionId =
+            sessionStorage.getItem(
+                "session_id"
+            );
+
+
+        let sessionData = {};
+
+
+        let interactionMode =
+            sessionStorage.getItem(
+                "interaction_mode"
+            ) ||
+            "Simulator";
+
+
+        let currentCustomerMessage =
+            sessionStorage.getItem(
+                "current_customer_message"
+            ) ||
+            "";
+
+
+        let latestSuggestedReply = "";
+
+
+        let latestAnalysis = {};
+
+
+        let latestKnowledge = {};
+
+
+        let currentTurn = 1;
+
+
+        let aiSuggestionUsed = false;
+
+
+        let conversationHistory = [];
+
+
+        let displayedCustomerMessages = new Set();
+
+
+        let openingMessageDisplayed = false;
+                document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                loadStoredConversationHistory();
+
+                loadSessionData();
+
+                const replyInput =
+                    document.getElementById(
+                        "agentReplyInput"
+                    );
+
+                replyInput.addEventListener(
+                    "keydown",
+                    function (event) {
+
+                        if (
+                            event.key === "Enter" &&
+                            !event.shiftKey
+                        ) {
+
+                            event.preventDefault();
+
+                            sendReply();
+
+                        }
+
+                    }
+                );
+
+                const endSessionButton =
+                    document.getElementById(
+                        "endSessionButton"
+                    );
+
+                endSessionButton.addEventListener(
+                    "click",
+                    endSession
+                );
+
+            }
+        );
+
+
+        function loadStoredConversationHistory() {
+
+            const storedHistory =
+                sessionStorage.getItem(
+                    "conversation_history"
+                );
+
+            if (!storedHistory) {
+
+                conversationHistory = [];
+
+                return;
+
+            }
+
+            try {
+
+                const parsedHistory =
+                    JSON.parse(
+                        storedHistory
+                    );
+
+                conversationHistory =
+                    Array.isArray(
+                        parsedHistory
+                    )
+                        ? parsedHistory
+                        : [];
+
+            } catch (error) {
+
+                conversationHistory = [];
+
+            }
 
         }
 
-    );
 
-
-}
-
-
-
-function updateLiveSummary(
-    summary
-) {
-
-
-    document.getElementById(
-        "totalTurns"
-    ).textContent =
-        summary.total_turns ??
-        currentTurn;
-
-
-    document.getElementById(
-        "averageScore"
-    ).textContent =
-        summary.overall_score ??
-        0;
-
-
-    document.getElementById(
-        "escalationRisk"
-    ).textContent =
-        summary.highest_escalation_risk ||
-        "Low";
-
-
-}
-function appendCustomerMessage(
-    message
-) {
-
-
-    const chatArea =
-        document.getElementById(
-            "chatArea"
-        );
-
-
-    const customerMessage =
-        document.createElement(
-            "div"
-        );
-
-
-    customerMessage.className =
-        "customer-message";
-
-
-    customerMessage.innerHTML = `
-
-        <div class="customer-name">
-
-            <i class="bi bi-person-circle"></i>
-
-            Customer
-
-        </div>
-
-        <p>${escapeHtml(message)}</p>
-
-        <span class="message-time">
-
-            ${getCurrentTime()}
-
-        </span>
-
-    `;
-
-
-    chatArea.appendChild(
-        customerMessage
-    );
-
-
-    scrollChatToBottom();
-
-
-}
-
-
-
-function appendAgentMessage(
-    message
-) {
-
-
-    const chatArea =
-        document.getElementById(
-            "chatArea"
-        );
-
-
-    const agentMessage =
-        document.createElement(
-            "div"
-        );
-
-
-    agentMessage.className =
-        "agent-message";
-
-
-    agentMessage.innerHTML = `
-
-        <div class="agent-name">
-
-            <i class="bi bi-headset"></i>
-
-            Support Agent
-
-        </div>
-
-        <p>${escapeHtml(message)}</p>
-
-        <span class="message-time">
-
-            ${getCurrentTime()}
-
-        </span>
-
-    `;
-
-
-    chatArea.appendChild(
-        agentMessage
-    );
-
-
-    scrollChatToBottom();
-
-
-}
-
-
-
-function escapeHtml(
-    value
-) {
-
-
-    const container =
-        document.createElement(
-            "div"
-        );
-
-
-    container.textContent =
-        value;
-
-
-    return container.innerHTML;
-
-
-}
-
-
-
-function getCurrentTime() {
-
-
-    return new Intl.DateTimeFormat(
-
-        "en-IN",
-
-        {
-
-
-            hour:"2-digit",
-
-
-            minute:"2-digit"
-
+        function saveConversationHistory() {
+
+            sessionStorage.setItem(
+                "conversation_history",
+                JSON.stringify(
+                    conversationHistory
+                )
+            );
 
         }
 
-    ).format(
 
-        new Date()
+        function loadSessionData() {
 
-    );
+            if (!sessionId) {
 
+                showError(
+                    "No active session was found. Please create a new session."
+                );
 
-}
+                disableConversation();
 
+                return;
 
+            }
 
-function scrollChatToBottom() {
+            const storedSessionData =
+                sessionStorage.getItem(
+                    "session_data"
+                );
 
+            if (storedSessionData) {
 
-    const chatArea =
-        document.getElementById(
-            "chatArea"
-        );
+                try {
 
+                    sessionData =
+                        JSON.parse(
+                            storedSessionData
+                        );
 
-    chatArea.scrollTop =
-        chatArea.scrollHeight;
+                } catch (error) {
 
-
-}
-
-
-
-function setSendingState(
-    isSending
-) {
-
-
-    const sendButton =
-        document.getElementById(
-            "sendReplyButton"
-        );
-
-
-    const sendButtonText =
-        document.getElementById(
-            "sendButtonText"
-        );
-
-
-    const sendButtonLoader =
-        document.getElementById(
-            "sendButtonLoader"
-        );
-
-
-    const replyInput =
-        document.getElementById(
-            "agentReplyInput"
-        );
-
-
-    sendButton.disabled =
-        isSending;
-
-
-    replyInput.disabled =
-        isSending;
-
-
-    if (isSending) {
-
-
-        sendButtonText.textContent =
-            "Evaluating...";
-
-
-        sendButtonLoader.classList.remove(
-            "d-none"
-        );
-
-
-    } else {
-
-
-        sendButtonText.textContent =
-            "Send";
-
-
-        sendButtonLoader.classList.add(
-            "d-none"
-        );
-
-
-    }
-
-
-
-}
-
-
-function showPageError(
-    message
-) {
-
-
-    const errorBox =
-        document.getElementById(
-            "pageError"
-        );
-
-
-    errorBox.textContent =
-        message;
-
-
-    errorBox.classList.remove(
-        "d-none"
-    );
-
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
-
-
-}
-
-
-
-function clearPageError() {
-
-
-    const errorBox =
-        document.getElementById(
-            "pageError"
-        );
-
-
-    errorBox.textContent = "";
-
-
-    errorBox.classList.add(
-        "d-none"
-    );
-
-
-}
-
-
-
-function disableReplyBox() {
-
-
-    document.getElementById(
-        "agentReplyInput"
-    ).disabled = true;
-
-
-    document.getElementById(
-        "sendReplyButton"
-    ).disabled = true;
-
-
-}
-
-
-
-async function endSession() {
-
-
-    if (!sessionId) {
-
-
-        showPageError(
-
-            "Session ID is missing."
-
-        );
-
-
-        return;
-
-
-    }
-
-
-    const shouldEnd =
-        confirm(
-
-            "Do you want to end this coaching session?"
-
-        );
-
-
-    if (!shouldEnd) {
-
-
-        return;
-
-
-    }
-
-
-    const endButton =
-        document.getElementById(
-            "endSessionButton"
-        );
-
-
-    endButton.disabled = true;
-
-
-    endButton.innerHTML =
-
-        '<span class="spinner-border spinner-border-sm"></span> Ending...';
-
-
-    try {
-
-
-        const response =
-            await fetch(
-
-                "/end-session",
-
-                {
-
-
-                    method:"POST",
-
-
-                    headers: {
-
-
-                        "Content-Type":
-                            "application/json"
-
-
-                    },
-
-
-                    body:
-                        JSON.stringify({
-
-
-                            session_id:
-                                sessionId
-
-
-                        })
-
+                    sessionData = {};
 
                 }
 
-            );
+            }
 
+            interactionMode =
+                sessionData.interaction_mode ||
+                interactionMode ||
+                "Simulator";
 
-        const result =
-            await response.json();
+            currentCustomerMessage =
+                currentCustomerMessage ||
+                sessionData.current_customer_message ||
+                "";
 
+            updateSessionInformation();
 
-        if (
-            !response.ok ||
-            result.status !== "success"
-        ) {
+            restoreConversationToChat();
 
-
-            throw new Error(
-
-                result.message ||
-                "Unable to end the session."
-
-            );
-
+            configureInteractionMode();
 
         }
 
 
-        sessionStorage.setItem(
+        function updateSessionInformation() {
 
-            "final_summary",
+            const product =
+                sessionData.product ||
+                "Amazon";
 
-            JSON.stringify(
+            const scenario =
+                sessionData.scenario ||
+                "General Support";
 
-                result.summary ||
-                {}
+            const persona =
+                sessionData.customer_persona ||
+                "Regular Customer";
 
+            const difficulty =
+                sessionData.difficulty ||
+                "Medium";
+
+            document.getElementById(
+                "productBadge"
+            ).innerHTML = `
+                <i class="bi bi-shop"></i>
+                ${escapeHtml(product)}
+            `;
+
+            document.getElementById(
+                "scenarioBadge"
+            ).innerHTML = `
+                <i class="bi bi-chat-left-text"></i>
+                ${escapeHtml(scenario)}
+            `;
+
+            document.getElementById(
+                "personaBadge"
+            ).innerHTML = `
+                <i class="bi bi-person"></i>
+                ${escapeHtml(persona)}
+            `;
+
+            document.getElementById(
+                "difficultyBadge"
+            ).innerHTML = `
+                <i class="bi bi-speedometer2"></i>
+                ${escapeHtml(difficulty)}
+            `;
+
+            document.getElementById(
+                "sidebarProduct"
+            ).textContent =
+                `${product} Support`;
+
+            document.getElementById(
+                "sidebarMode"
+            ).textContent =
+                interactionMode;
+
+            document.getElementById(
+                "sidebarScenario"
+            ).textContent =
+                scenario;
+
+            document.getElementById(
+                "sidebarPersona"
+            ).textContent =
+                persona;
+
+            document.getElementById(
+                "sidebarDifficulty"
+            ).textContent =
+                difficulty;
+
+        }
+
+
+        function restoreConversationToChat() {
+
+            const chatArea =
+                document.getElementById(
+                    "chatArea"
+                );
+
+            const initialBubble =
+                document.getElementById(
+                    "initialCustomerBubble"
+                );
+
+            chatArea.innerHTML = "";
+
+            displayedCustomerMessages.clear();
+
+            openingMessageDisplayed = false;
+
+            if (
+                conversationHistory.length > 0
+            ) {
+
+                conversationHistory.forEach(
+                    function (
+                        item
+                    ) {
+
+                        const role =
+                            String(
+                                item.role ||
+                                ""
+                            ).toLowerCase();
+
+                        const message =
+                            String(
+                                item.message ||
+                                ""
+                            ).trim();
+
+                        if (!message) {
+
+                            return;
+
+                        }
+
+                        if (
+                            role === "customer"
+                        ) {
+
+                            appendCustomerMessage(
+                                message,
+                                false
+                            );
+
+                        } else if (
+                            role === "agent"
+                        ) {
+
+                            appendAgentMessage(
+                                message,
+                                false
+                            );
+
+                        }
+
+                    }
+                );
+
+                openingMessageDisplayed = true;
+
+                scrollChatToBottom();
+
+                return;
+
+            }
+
+            if (
+                initialBubble
+            ) {
+
+                initialBubble.classList.add(
+                    "d-none"
+                );
+
+            }
+
+        }
+
+
+        function configureInteractionMode() {
+
+            const normalizedMode =
+                String(
+                    interactionMode ||
+                    "Simulator"
+                )
+                .trim()
+                .toLowerCase();
+
+            const manualControls =
+                document.getElementById(
+                    "manualModeControls"
+                );
+
+            const replyInput =
+                document.getElementById(
+                    "agentReplyInput"
+                );
+
+            const sendButton =
+                document.getElementById(
+                    "sendReplyButton"
+                );
+
+            const statusBadge =
+                document.getElementById(
+                    "sessionStatusBadge"
+                );
+
+            if (
+                normalizedMode === "manual"
+            ) {
+
+                manualControls.classList.remove(
+                    "d-none"
+                );
+
+                statusBadge.textContent =
+                    "Manual AI Mode";
+
+                if (
+                    currentCustomerMessage
+                ) {
+
+                    addCustomerMessageToConversation(
+                        currentCustomerMessage
+                    );
+
+                    enableConversation();
+
+                    generateSuggestedReply();
+
+                } else {
+
+                    disableConversation();
+
+                    replyInput.placeholder =
+                        "Generate or enter a customer message first.";
+
+                }
+
+                return;
+
+            }
+
+            if (
+                normalizedMode === "replay"
+            ) {
+
+                manualControls.classList.add(
+                    "d-none"
+                );
+
+                statusBadge.textContent =
+                    "Replay Mode";
+
+                disableConversation();
+
+                replyInput.placeholder =
+                    "Replay controls are not available yet.";
+
+                return;
+
+            }
+
+            manualControls.classList.add(
+                "d-none"
+            );
+
+            statusBadge.textContent =
+                "AI Simulator Mode";
+
+            enableConversation();
+
+            if (
+                currentCustomerMessage
+            ) {
+
+                addCustomerMessageToConversation(
+                    currentCustomerMessage
+                );
+
+                generateSuggestedReply();
+
+            } else {
+
+                generateScenarioMessage();
+
+            }
+
+        }
+
+
+        function addCustomerMessageToConversation(
+            message
+        ) {
+
+            const cleanMessage =
+                String(
+                    message ||
+                    ""
+                ).trim();
+
+            if (!cleanMessage) {
+
+                return;
+
+            }
+
+            const alreadyExists =
+                conversationHistory.some(
+                    function (
+                        item
+                    ) {
+
+                        return (
+                            String(
+                                item.role ||
+                                ""
+                            ).toLowerCase() ===
+                            "customer"
+                            &&
+                            String(
+                                item.message ||
+                                ""
+                            ).trim() ===
+                            cleanMessage
+                        );
+
+                    }
+                );
+
+            if (!alreadyExists) {
+
+                conversationHistory.push({
+                    role:"customer",
+                    message:cleanMessage
+                });
+
+                saveConversationHistory();
+
+            }
+
+            if (
+                !displayedCustomerMessages.has(
+                    cleanMessage
+                )
+            ) {
+
+                appendCustomerMessage(
+                    cleanMessage
+                );
+
+            }
+
+        }
+
+
+        function addAgentMessageToConversation(
+            message
+        ) {
+
+            const cleanMessage =
+                String(
+                    message ||
+                    ""
+                ).trim();
+
+            if (!cleanMessage) {
+
+                return;
+
+            }
+
+            conversationHistory.push({
+                role:"agent",
+                message:cleanMessage
+            });
+
+            saveConversationHistory();
+
+            appendAgentMessage(
+                cleanMessage
+            );
+
+        }
+                async function generateScenarioMessage() {
+
+            const generateButton =
+                document.getElementById(
+                    "generateScenarioMessageButton"
+                );
+
+            const manualInput =
+                document.getElementById(
+                    "manualCustomerMessage"
+                );
+
+            const normalizedMode =
+                String(
+                    interactionMode ||
+                    "Simulator"
+                )
+                .trim()
+                .toLowerCase();
+
+            clearError();
+
+            if (generateButton) {
+
+                generateButton.disabled = true;
+
+                generateButton.innerHTML = `
+                    <span class="spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true">
+                    </span>
+
+                    Generating...
+                `;
+
+            }
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/generate-message",
+                        {
+                            method:"POST",
+
+                            headers:{
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    session_id:
+                                        sessionId,
+
+                                    product:
+                                        sessionData.product ||
+                                        "Amazon",
+
+                                    scenario:
+                                        sessionData.scenario ||
+                                        "General Support",
+
+                                    customer_persona:
+                                        sessionData.customer_persona ||
+                                        "Regular Customer",
+
+                                    language:
+                                        sessionData.language ||
+                                        "English",
+
+                                    difficulty:
+                                        sessionData.difficulty ||
+                                        "Medium",
+
+                                    conversation_history:
+                                        conversationHistory
+                                })
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    result.status !== "success"
+                ) {
+
+                    throw new Error(
+                        result.message ||
+                        "Unable to generate the AI customer message."
+                    );
+
+                }
+
+
+                const generatedMessage =
+                    String(
+                        result.customer_message ||
+                        ""
+                    ).trim();
+
+
+                if (!generatedMessage) {
+
+                    throw new Error(
+                        "The AI customer returned an empty message."
+                    );
+
+                }
+
+
+                currentCustomerMessage =
+                    generatedMessage;
+
+
+                sessionStorage.setItem(
+                    "current_customer_message",
+                    currentCustomerMessage
+                );
+
+
+                if (
+                    normalizedMode === "manual"
+                ) {
+
+                    /*
+                    In Manual Mode, generating a message
+                    should not replace or immediately alter
+                    the existing chat.
+
+                    It is placed in the textarea first.
+                    The user can then click Add to Chat.
+                    */
+
+                    manualInput.value =
+                        generatedMessage;
+
+
+                    manualInput.focus();
+
+                } else {
+
+                    /*
+                    In Simulator Mode, every newly generated
+                    AI customer message is appended as a
+                    new conversation message.
+                    */
+
+                    addCustomerMessageToConversation(
+                        generatedMessage
+                    );
+
+
+                    enableConversation();
+
+
+                    latestAnalysis = {};
+
+                    latestKnowledge = {};
+
+
+                    resetSuggestedReply();
+
+
+                    await generateSuggestedReply();
+
+
+                    document.getElementById(
+                        "agentReplyInput"
+                    ).focus();
+
+                }
+
+            } catch (error) {
+
+                showError(
+                    error.message ||
+                    "AI customer message generation failed."
+                );
+
+            } finally {
+
+                if (generateButton) {
+
+                    generateButton.disabled = false;
+
+                    generateButton.innerHTML = `
+                        <i class="bi bi-stars"></i>
+
+                        Generate AI Message
+                    `;
+
+                }
+
+            }
+
+        }
+
+
+        async function useManualCustomerMessage() {
+
+            const manualInput =
+                document.getElementById(
+                    "manualCustomerMessage"
+                );
+
+            const useButton =
+                document.getElementById(
+                    "useManualMessageButton"
+                );
+
+            const customerMessage =
+                manualInput.value.trim();
+
+
+            if (!customerMessage) {
+
+                showError(
+                    "Please type or generate a customer message first."
+                );
+
+                manualInput.focus();
+
+                return;
+
+            }
+
+
+            clearError();
+
+
+            useButton.disabled = true;
+
+            useButton.innerHTML = `
+                <span class="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true">
+                </span>
+
+                Adding...
+            `;
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/process-manual-message",
+                        {
+                            method:"POST",
+
+                            headers:{
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    session_id:
+                                        sessionId,
+
+                                    customer_message:
+                                        customerMessage,
+
+                                    product:
+                                        sessionData.product ||
+                                        "Amazon"
+                                })
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    result.status !== "success"
+                ) {
+
+                    throw new Error(
+                        result.message ||
+                        "Unable to process the customer message."
+                    );
+
+                }
+
+
+                currentCustomerMessage =
+                    String(
+                        result.customer_message ||
+                        customerMessage
+                    ).trim();
+
+
+                latestAnalysis =
+                    result.analysis || {};
+
+
+                latestKnowledge =
+                    result.knowledge || {};
+
+
+                sessionStorage.setItem(
+                    "current_customer_message",
+                    currentCustomerMessage
+                );
+
+
+                /*
+                Important:
+                Add the new customer message as a fresh chat bubble.
+                Do not replace the opening or previous message.
+                */
+
+                addCustomerMessageToConversation(
+                    currentCustomerMessage
+                );
+
+
+                updateCustomerAnalysis(
+                    latestAnalysis
+                );
+
+
+                updateKnowledge(
+                    latestKnowledge
+                );
+
+
+                updateEscalation(
+                    result.escalation || {}
+                );
+
+
+                enableConversation();
+
+
+                manualInput.value = "";
+
+
+                resetSuggestedReply();
+
+
+                await generateSuggestedReply();
+
+
+                document.getElementById(
+                    "agentReplyInput"
+                ).focus();
+
+            } catch (error) {
+
+                showError(
+                    error.message ||
+                    "Manual customer message processing failed."
+                );
+
+            } finally {
+
+                useButton.disabled = false;
+
+                useButton.innerHTML = `
+                    <i class="bi bi-check2-circle"></i>
+
+                    Add to Chat
+                `;
+
+            }
+
+        }
+
+
+        async function generateSuggestedReply() {
+
+            const suggestionText =
+                document.getElementById(
+                    "aiSuggestionText"
+                );
+
+            const suggestionSource =
+                document.getElementById(
+                    "aiSuggestionSource"
+                );
+
+            const suggestionStatus =
+                document.getElementById(
+                    "aiSuggestionStatus"
+                );
+
+            const generateButton =
+                document.getElementById(
+                    "generateSuggestionButton"
+                );
+
+            const useButton =
+                document.getElementById(
+                    "useSuggestionButton"
+                );
+
+
+            if (!currentCustomerMessage) {
+
+                resetSuggestedReply();
+
+                return;
+
+            }
+
+
+            clearError();
+
+
+            generateButton.disabled = true;
+
+            useButton.disabled = true;
+
+
+            generateButton.innerHTML = `
+                <span class="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true">
+                </span>
+
+                Generating...
+            `;
+
+
+            suggestionText.innerHTML = `
+                <span class="ai-suggestion-placeholder">
+
+                    Gemini is generating a support reply...
+
+                </span>
+            `;
+
+
+            suggestionStatus.textContent =
+                "Generating a reply using the active customer message and knowledge context.";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/generate-suggested-reply",
+                        {
+                            method:"POST",
+
+                            headers:{
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    session_id:
+                                        sessionId,
+
+                                    customer_message:
+                                        currentCustomerMessage,
+
+                                    product:
+                                        sessionData.product ||
+                                        "Amazon",
+
+                                    analysis:
+                                        latestAnalysis,
+
+                                    knowledge:
+                                        latestKnowledge,
+
+                                    conversation_history:
+                                        conversationHistory
+                                })
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    result.status !== "success"
+                ) {
+
+                    throw new Error(
+                        result.message ||
+                        "Unable to generate the AI agent reply."
+                    );
+
+                }
+
+
+                latestSuggestedReply =
+                    String(
+                        result.suggested_response ||
+                        ""
+                    ).trim();
+
+
+                if (!latestSuggestedReply) {
+
+                    throw new Error(
+                        "The AI agent returned an empty reply."
+                    );
+
+                }
+
+
+                latestAnalysis =
+                    result.analysis ||
+                    latestAnalysis;
+
+
+                latestKnowledge =
+                    result.knowledge ||
+                    latestKnowledge;
+
+
+                suggestionText.textContent =
+                    latestSuggestedReply;
+
+
+                const source =
+                    String(
+                        result.source ||
+                        "gemini"
+                    )
+                    .trim()
+                    .toLowerCase();
+
+
+                suggestionSource.textContent =
+                    source === "fallback"
+                        ? "FALLBACK"
+                        : "GEMINI AI";
+
+
+                suggestionStatus.textContent =
+                    result.reasoning ||
+                    "You can use, edit, or ignore this AI-generated reply.";
+
+
+                useButton.disabled = false;
+
+
+                aiSuggestionUsed = false;
+
+            } catch (error) {
+
+                latestSuggestedReply = "";
+
+                aiSuggestionUsed = false;
+
+
+                suggestionText.innerHTML = `
+                    <span class="ai-suggestion-placeholder">
+
+                        AI agent suggestion is unavailable.
+
+                    </span>
+                `;
+
+
+                suggestionSource.textContent =
+                    "UNAVAILABLE";
+
+
+                suggestionStatus.textContent =
+                    error.message ||
+                    "Unable to generate the AI agent reply.";
+
+
+                showError(
+                    error.message ||
+                    "Unable to generate the AI agent reply."
+                );
+
+            } finally {
+
+                generateButton.disabled = false;
+
+                generateButton.innerHTML = `
+                    <i class="bi bi-arrow-clockwise"></i>
+
+                    Generate Reply
+                `;
+
+            }
+
+        }
+
+
+        function useSuggestedReply() {
+
+            const replyInput =
+                document.getElementById(
+                    "agentReplyInput"
+                );
+
+            const suggestionStatus =
+                document.getElementById(
+                    "aiSuggestionStatus"
+                );
+
+
+            if (!latestSuggestedReply) {
+
+                showError(
+                    "No AI reply is currently available."
+                );
+
+                return;
+
+            }
+
+
+            clearError();
+
+
+            replyInput.disabled = false;
+
+
+            replyInput.value =
+                latestSuggestedReply;
+
+
+            replyInput.focus();
+
+
+            aiSuggestionUsed = true;
+
+
+            suggestionStatus.textContent =
+                "AI reply copied to the response box. You can edit it before sending.";
+
+        }
+
+
+        function resetSuggestedReply() {
+
+            latestSuggestedReply = "";
+
+            aiSuggestionUsed = false;
+
+
+            const suggestionText =
+                document.getElementById(
+                    "aiSuggestionText"
+                );
+
+            const suggestionSource =
+                document.getElementById(
+                    "aiSuggestionSource"
+                );
+
+            const suggestionStatus =
+                document.getElementById(
+                    "aiSuggestionStatus"
+                );
+
+            const useButton =
+                document.getElementById(
+                    "useSuggestionButton"
+                );
+
+
+            if (suggestionText) {
+
+                suggestionText.innerHTML = `
+                    <span class="ai-suggestion-placeholder">
+
+                        Generate an AI support reply for the current customer message.
+
+                    </span>
+                `;
+
+            }
+
+
+            if (suggestionSource) {
+
+                suggestionSource.textContent =
+                    "GEMINI AI";
+
+            }
+
+
+            if (suggestionStatus) {
+
+                suggestionStatus.textContent =
+                    "You can use, edit, or ignore the AI-generated reply.";
+
+            }
+
+
+            if (useButton) {
+
+                useButton.disabled = true;
+
+            }
+
+        }
+                async function sendReply() {
+
+            const replyInput =
+                document.getElementById(
+                    "agentReplyInput"
+                );
+
+            const agentReply =
+                replyInput.value.trim();
+
+
+            if (!sessionId) {
+
+                showError(
+                    "Session ID is missing. Please start a new session."
+                );
+
+                return;
+
+            }
+
+
+            if (!currentCustomerMessage) {
+
+                showError(
+                    "Customer message is unavailable."
+                );
+
+                return;
+
+            }
+
+
+            if (!agentReply) {
+
+                showError(
+                    "Please enter or use an AI support reply before sending."
+                );
+
+                replyInput.focus();
+
+                return;
+
+            }
+
+
+            clearError();
+
+
+            const previousCustomerMessage =
+                currentCustomerMessage;
+
+
+            setSendingState(
+                true
+            );
+
+
+            /*
+            Append the agent reply to the chat
+            and store it in browser conversation history.
+            */
+
+            addAgentMessageToConversation(
+                agentReply
+            );
+
+
+            replyInput.value = "";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/next-turn",
+                        {
+                            method:"POST",
+
+                            headers:{
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    session_id:
+                                        sessionId,
+
+                                    customer_message:
+                                        previousCustomerMessage,
+
+                                    agent_reply:
+                                        agentReply,
+
+                                    ai_suggestion_used:
+                                        aiSuggestionUsed,
+
+                                    suggested_response:
+                                        latestSuggestedReply,
+
+                                    conversation_history:
+                                        conversationHistory
+                                })
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    result.status !== "success"
+                ) {
+
+                    throw new Error(
+                        result.message ||
+                        "Unable to process the conversation turn."
+                    );
+
+                }
+
+
+                /*
+                Update all right-side coaching panels
+                using the exact /next-turn response keys.
+                */
+
+                updateCustomerAnalysis(
+                    result.analysis || {}
+                );
+
+
+                updateResponseEvaluation(
+                    result.evaluation || {}
+                );
+
+
+                updateKnowledge(
+                    result.knowledge || {}
+                );
+
+
+                updateCoaching(
+                    result.coaching || {}
+                );
+
+
+                updateEscalation(
+                    result.escalation || {}
+                );
+
+
+                /*
+                The backend returns the next customer message
+                under customer_message.
+
+                It must become the active message and be
+                appended as a new bubble, never replace
+                an earlier customer message.
+                */
+
+                const nextCustomerMessage =
+                    String(
+                        result.customer_message ||
+                        result.next_customer_message ||
+                        ""
+                    ).trim();
+
+
+                if (!nextCustomerMessage) {
+
+                    throw new Error(
+                        "The AI customer returned an empty next message."
+                    );
+
+                }
+
+
+                currentCustomerMessage =
+                    nextCustomerMessage;
+
+
+                sessionStorage.setItem(
+                    "current_customer_message",
+                    currentCustomerMessage
+                );
+
+
+                currentTurn += 1;
+
+
+                document.getElementById(
+                    "turnNumber"
+                ).textContent =
+                    currentTurn;
+
+
+                document.getElementById(
+                    "totalTurns"
+                ).textContent =
+                    Math.max(
+                        0,
+                        currentTurn - 1
+                    );
+
+
+                /*
+                Reset old AI-agent suggestion before
+                generating a suggestion for the new turn.
+                */
+
+                latestAnalysis = {};
+
+                latestKnowledge = {};
+
+                resetSuggestedReply();
+
+
+                /*
+                Small delay makes the customer response
+                appear naturally after the agent reply.
+                */
+
+                await new Promise(
+                    function (
+                        resolve
+                    ) {
+
+                        setTimeout(
+                            resolve,
+                            450
+                        );
+
+                    }
+                );
+
+
+                addCustomerMessageToConversation(
+                    nextCustomerMessage
+                );
+
+
+                /*
+                Generate a fresh AI-agent suggestion
+                for the newly appended customer message.
+                */
+
+                await generateSuggestedReply();
+
+
+                aiSuggestionUsed = false;
+
+
+            } catch (error) {
+
+                showError(
+                    error.message ||
+                    "Something went wrong while processing the conversation."
+                );
+
+
+                /*
+                Restore the reply only when the backend
+                request fails, so the trainee can retry.
+                */
+
+                replyInput.value =
+                    agentReply;
+
+
+                /*
+                Remove the failed agent message from
+                browser history to avoid duplicate messages
+                when the trainee sends it again.
+                */
+
+                const lastHistoryItem =
+                    conversationHistory[
+                        conversationHistory.length - 1
+                    ];
+
+
+                if (
+                    lastHistoryItem &&
+                    String(
+                        lastHistoryItem.role ||
+                        ""
+                    ).toLowerCase() ===
+                    "agent" &&
+                    String(
+                        lastHistoryItem.message ||
+                        ""
+                    ).trim() ===
+                    agentReply
+                ) {
+
+                    conversationHistory.pop();
+
+                    saveConversationHistory();
+
+                }
+
+            } finally {
+
+                setSendingState(
+                    false
+                );
+
+
+                replyInput.focus();
+
+            }
+
+        }
+                function appendCustomerMessage(
+            message,
+            shouldScroll = true
+        ) {
+
+            const cleanMessage =
+                String(
+                    message ||
+                    ""
+                ).trim();
+
+
+            if (!cleanMessage) {
+
+                return;
+
+            }
+
+
+            const chatArea =
+                document.getElementById(
+                    "chatArea"
+                );
+
+
+            const messageElement =
+                document.createElement(
+                    "div"
+                );
+
+
+            messageElement.className =
+                "customer-message";
+
+
+            messageElement.innerHTML = `
+                <div class="message-name">
+
+                    <i class="bi bi-person-circle"></i>
+
+                    Customer
+
+                </div>
+
+                <p>
+                    ${escapeHtml(
+                        cleanMessage
+                    )}
+                </p>
+
+                <span class="message-time">
+
+                    ${getCurrentTime()}
+
+                </span>
+            `;
+
+
+            chatArea.appendChild(
+                messageElement
+            );
+
+
+            displayedCustomerMessages.add(
+                cleanMessage
+            );
+
+
+            openingMessageDisplayed = true;
+
+
+            if (shouldScroll) {
+
+                scrollChatToBottom();
+
+            }
+
+        }
+
+
+        function appendAgentMessage(
+            message,
+            shouldScroll = true
+        ) {
+
+            const cleanMessage =
+                String(
+                    message ||
+                    ""
+                ).trim();
+
+
+            if (!cleanMessage) {
+
+                return;
+
+            }
+
+
+            const chatArea =
+                document.getElementById(
+                    "chatArea"
+                );
+
+
+            const messageElement =
+                document.createElement(
+                    "div"
+                );
+
+
+            messageElement.className =
+                "agent-message";
+
+
+            messageElement.innerHTML = `
+                <div class="message-name">
+
+                    <i class="bi bi-headset"></i>
+
+                    Support Agent
+
+                </div>
+
+                <p>
+                    ${escapeHtml(
+                        cleanMessage
+                    )}
+                </p>
+
+                <span class="message-time">
+
+                    ${getCurrentTime()}
+
+                </span>
+            `;
+
+
+            chatArea.appendChild(
+                messageElement
+            );
+
+
+            if (shouldScroll) {
+
+                scrollChatToBottom();
+
+            }
+
+        }
+
+
+        function updateCustomerAnalysis(
+            analysis
+        ) {
+
+            analysis =
+                analysis || {};
+
+
+            latestAnalysis =
+                analysis;
+
+
+            setStatusBadge(
+                "intentValue",
+                analysis.intent ||
+                analysis.customer_intent ||
+                "Unknown"
+            );
+
+
+            setStatusBadge(
+                "sentimentValue",
+                analysis.sentiment ||
+                "Unknown"
+            );
+
+
+            setStatusBadge(
+                "frustrationValue",
+                analysis.frustration_level ||
+                analysis.frustration ||
+                "Low"
+            );
+
+        }
+
+
+        function updateResponseEvaluation(
+            evaluation
+        ) {
+
+            evaluation =
+                evaluation || {};
+
+
+            setStatusBadge(
+                "empathyScore",
+                formatScore(
+                    evaluation.empathy_score ??
+                    evaluation.empathy
+                )
+            );
+
+
+            setStatusBadge(
+                "toneScore",
+                formatScore(
+                    evaluation.tone_score ??
+                    evaluation.tone
+                )
+            );
+
+
+            setStatusBadge(
+                "clarityScore",
+                formatScore(
+                    evaluation.clarity_score ??
+                    evaluation.clarity
+                )
+            );
+
+
+            setStatusBadge(
+                "professionalismScore",
+                formatScore(
+                    evaluation.professionalism_score ??
+                    evaluation.professionalism
+                )
+            );
+
+
+            setStatusBadge(
+                "resolutionScore",
+                formatScore(
+                    evaluation.resolution_score ??
+                    evaluation.resolution
+                )
+            );
+
+
+            updateAverageScore(
+                evaluation
+            );
+
+        }
+
+
+        function updateAverageScore(
+            evaluation
+        ) {
+
+            const scoreValues = [
+
+                evaluation.empathy_score ??
+                evaluation.empathy,
+
+                evaluation.tone_score ??
+                evaluation.tone,
+
+                evaluation.clarity_score ??
+                evaluation.clarity,
+
+                evaluation.professionalism_score ??
+                evaluation.professionalism,
+
+                evaluation.resolution_score ??
+                evaluation.resolution
+
+            ]
+            .map(
+                function (
+                    value
+                ) {
+
+                    return Number(
+                        value
+                    );
+
+                }
             )
+            .filter(
+                function (
+                    value
+                ) {
 
-        );
+                    return Number.isFinite(
+                        value
+                    );
 
-
-        sessionStorage.removeItem(
-
-            "current_customer_message"
-
-        );
-
-
-        window.location.href =
-
-            result.report_url ||
-            `/report/${sessionId}`;
+                }
+            );
 
 
-    } catch (error) {
+            if (
+                scoreValues.length === 0
+            ) {
+
+                document.getElementById(
+                    "averageScore"
+                ).textContent =
+                    "0";
+
+                return;
+
+            }
 
 
-        showPageError(
+            const totalScore =
+                scoreValues.reduce(
+                    function (
+                        sum,
+                        value
+                    ) {
 
-            error.message ||
-            "Something went wrong while ending the session."
+                        return sum + value;
 
-        );
-
-
-        endButton.disabled = false;
-
-
-        endButton.innerHTML =
-
-            '<i class="bi bi-stop-circle"></i> End Session';
+                    },
+                    0
+                );
 
 
-    }
+            const averageScore =
+                Math.round(
+                    totalScore /
+                    scoreValues.length
+                );
 
 
-}
+            document.getElementById(
+                "averageScore"
+            ).textContent =
+                averageScore;
 
-</script>
+        }
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        function setStatusBadge(
+            elementId,
+            value
+        ) {
 
+            const element =
+                document.getElementById(
+                    elementId
+                );
+
+
+            if (!element) {
+
+                return;
+
+            }
+
+
+            const displayValue =
+                String(
+                    value ??
+                    "Unknown"
+                );
+
+
+            const normalizedValue =
+                displayValue
+                .trim()
+                .toLowerCase();
+
+
+            element.textContent =
+                displayValue;
+
+
+            element.className =
+                "status-badge";
+
+
+            const numericValue =
+                Number(
+                    normalizedValue
+                        .replace(
+                            "/100",
+                            ""
+                        )
+                );
+
+
+            if (
+                Number.isFinite(
+                    numericValue
+                )
+            ) {
+
+                if (
+                    numericValue >= 75
+                ) {
+
+                    element.classList.add(
+                        "positive"
+                    );
+
+                } else if (
+                    numericValue < 50
+                ) {
+
+                    element.classList.add(
+                        "negative"
+                    );
+
+                } else {
+
+                    element.classList.add(
+                        "warning"
+                    );
+
+                }
+
+
+                return;
+
+            }
+
+
+            if (
+                normalizedValue.includes(
+                    "positive"
+                ) ||
+                normalizedValue.includes(
+                    "excellent"
+                ) ||
+                normalizedValue.includes(
+                    "good"
+                ) ||
+                normalizedValue.includes(
+                    "professional"
+                ) ||
+                normalizedValue.includes(
+                    "clear"
+                ) ||
+                normalizedValue.includes(
+                    "resolved"
+                ) ||
+                normalizedValue.includes(
+                    "low"
+                )
+            ) {
+
+                element.classList.add(
+                    "positive"
+                );
+
+            } else if (
+                normalizedValue.includes(
+                    "negative"
+                ) ||
+                normalizedValue.includes(
+                    "poor"
+                ) ||
+                normalizedValue.includes(
+                    "angry"
+                ) ||
+                normalizedValue.includes(
+                    "critical"
+                ) ||
+                normalizedValue.includes(
+                    "high"
+                )
+            ) {
+
+                element.classList.add(
+                    "negative"
+                );
+
+            } else {
+
+                element.classList.add(
+                    "warning"
+                );
+
+            }
+
+        }
+
+
+        function formatScore(
+            value
+        ) {
+
+            if (
+                value === undefined ||
+                value === null ||
+                value === ""
+            ) {
+
+                return "N/A";
+
+            }
+
+
+            const numericValue =
+                Number(
+                    value
+                );
+
+
+            if (
+                Number.isFinite(
+                    numericValue
+                )
+            ) {
+
+                return `${Math.round(
+                    numericValue
+                )}/100`;
+
+            }
+
+
+            return String(
+                value
+            );
+
+        }
+
+
+        function updateKnowledge(
+            knowledge
+        ) {
+
+            const knowledgeBox =
+                document.getElementById(
+                    "knowledgeContent"
+                );
+
+
+            latestKnowledge =
+                knowledge || {};
+
+
+            if (
+                !knowledge ||
+                (
+                    typeof knowledge ===
+                    "object" &&
+                    !Array.isArray(
+                        knowledge
+                    ) &&
+                    Object.keys(
+                        knowledge
+                    ).length === 0
+                )
+            ) {
+
+                knowledgeBox.innerHTML = `
+                    <div class="knowledge-item">
+
+                        No knowledge recommendation is available.
+
+                    </div>
+                `;
+
+                return;
+
+            }
+
+
+            if (
+                typeof knowledge ===
+                "string"
+            ) {
+
+                knowledgeBox.innerHTML = `
+                    <div class="knowledge-item">
+
+                        ${escapeHtml(
+                            knowledge
+                        )}
+
+                    </div>
+                `;
+
+                return;
+
+            }
+
+
+            if (
+                Array.isArray(
+                    knowledge
+                )
+            ) {
+
+                knowledgeBox.innerHTML =
+                    knowledge
+                    .map(
+                        function (
+                            item
+                        ) {
+
+                            return `
+                                <div class="knowledge-item">
+
+                                    ${formatKnowledgeValue(
+                                        item
+                                    )}
+
+                                </div>
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+
+                return;
+
+            }
+
+
+            let knowledgeHtml = "";
+
+
+            Object.entries(
+                knowledge
+            ).forEach(
+                function (
+                    entry
+                ) {
+
+                    const key =
+                        entry[0];
+
+
+                    const value =
+                        entry[1];
+
+
+                    knowledgeHtml += `
+                        <div class="knowledge-item">
+
+                            <strong>
+                                ${escapeHtml(
+                                    key
+                                )}
+                            </strong>
+
+                            <br>
+
+                            ${formatKnowledgeValue(
+                                value
+                            )}
+
+                        </div>
+                    `;
+
+                }
+            );
+
+
+            knowledgeBox.innerHTML =
+                knowledgeHtml ||
+                `
+                    <div class="knowledge-item">
+
+                        No knowledge recommendation is available.
+
+                    </div>
+                `;
+
+        }
+
+
+        function formatKnowledgeValue(
+            value
+        ) {
+
+            if (
+                value === undefined ||
+                value === null
+            ) {
+
+                return "N/A";
+
+            }
+
+
+            if (
+                Array.isArray(
+                    value
+                )
+            ) {
+
+                return value
+                    .map(
+                        function (
+                            item
+                        ) {
+
+                            return escapeHtml(
+                                String(
+                                    item
+                                )
+                            );
+
+                        }
+                    )
+                    .join("<br>");
+
+            }
+
+
+            if (
+                typeof value ===
+                "object"
+            ) {
+
+                return Object.entries(
+                    value
+                )
+                .map(
+                    function (
+                        entry
+                    ) {
+
+                        return `
+                            <strong>
+                                ${escapeHtml(
+                                    entry[0]
+                                )}
+                            </strong>:
+                            ${escapeHtml(
+                                String(
+                                    entry[1]
+                                )
+                            )}
+                        `;
+
+                    }
+                )
+                .join("<br>");
+
+            }
+
+
+            return escapeHtml(
+                String(
+                    value
+                )
+            );
+
+        }
+
+
+        function updateCoaching(
+            coaching
+        ) {
+
+            const coachingBox =
+                document.getElementById(
+                    "coachingContent"
+                );
+
+
+            coaching =
+                coaching || {};
+
+
+            const strengths =
+                Array.isArray(
+                    coaching.strengths
+                )
+                    ? coaching.strengths
+                    : [];
+
+
+            const improvementTips =
+                Array.isArray(
+                    coaching.improvement_tips
+                )
+                    ? coaching.improvement_tips
+                    : [];
+
+
+            const reasoning =
+                String(
+                    coaching.reasoning ||
+                    ""
+                ).trim();
+
+
+            let coachingHtml = "";
+
+
+            if (
+                strengths.length > 0
+            ) {
+
+                coachingHtml += `
+                    <div class="coaching-section">
+
+                        <div class="coaching-section-title">
+
+                            Strengths
+
+                        </div>
+                `;
+
+
+                strengths.forEach(
+                    function (
+                        strength
+                    ) {
+
+                        coachingHtml += `
+                            <div class="coaching-item">
+
+                                <span class="coaching-icon">
+
+                                    ✓
+
+                                </span>
+
+                                <span>
+
+                                    ${escapeHtml(
+                                        String(
+                                            strength
+                                        )
+                                    )}
+
+                                </span>
+
+                            </div>
+                        `;
+
+                    }
+                );
+
+
+                coachingHtml += `
+                    </div>
+                `;
+
+            }
+
+
+            if (
+                improvementTips.length > 0
+            ) {
+
+                coachingHtml += `
+                    <div class="coaching-section">
+
+                        <div class="coaching-section-title">
+
+                            Improvement Tips
+
+                        </div>
+                `;
+
+
+                improvementTips.forEach(
+                    function (
+                        improvement
+                    ) {
+
+                        coachingHtml += `
+                            <div class="coaching-item">
+
+                                <span class="coaching-icon warning">
+
+                                    !
+
+                                </span>
+
+                                <span>
+
+                                    ${escapeHtml(
+                                        String(
+                                            improvement
+                                        )
+                                    )}
+
+                                </span>
+
+                            </div>
+                        `;
+
+                    }
+                );
+
+
+                coachingHtml += `
+                    </div>
+                `;
+
+            }
+
+
+            if (reasoning) {
+
+                coachingHtml += `
+                    <div class="coaching-section">
+
+                        <div class="coaching-section-title">
+
+                            AI Reasoning
+
+                        </div>
+
+
+                        <div class="coaching-item">
+
+                            <span class="coaching-icon info">
+
+                                i
+
+                            </span>
+
+
+                            <span>
+
+                                ${escapeHtml(
+                                    reasoning
+                                )}
+
+                            </span>
+
+                        </div>
+
+                    </div>
+                `;
+
+            }
+
+
+            coachingBox.innerHTML =
+                coachingHtml ||
+                `
+                    <div class="knowledge-content">
+
+                        No coaching feedback is available.
+
+                    </div>
+                `;
+
+        }
+
+
+        function updateEscalation(
+            escalation
+        ) {
+
+            escalation =
+                escalation || {};
+
+
+            const panel =
+                document.getElementById(
+                    "escalationPanel"
+                );
+
+
+            const levelElement =
+                document.getElementById(
+                    "escalationLevel"
+                );
+
+
+            const reasonElement =
+                document.getElementById(
+                    "escalationReason"
+                );
+
+
+            const summaryElement =
+                document.getElementById(
+                    "escalationRisk"
+                );
+
+
+            const riskLevel =
+                String(
+                    escalation.risk_level ||
+                    escalation.level ||
+                    escalation.risk ||
+                    "Low"
+                ).trim();
+
+
+            const riskScore =
+                escalation.risk_score ??
+                escalation.score ??
+                "";
+
+
+            const reason =
+                String(
+                    escalation.reasoning ||
+                    escalation.reason ||
+                    escalation.explanation ||
+                    "No escalation reason was provided."
+                ).trim();
+
+
+            const displayRisk =
+                riskScore !== ""
+                    ? `${riskLevel} (${riskScore})`
+                    : riskLevel;
+
+
+            levelElement.textContent =
+                displayRisk;
+
+
+            reasonElement.textContent =
+                reason;
+
+
+            summaryElement.textContent =
+                displayRisk;
+
+
+            const normalizedRisk =
+                riskLevel
+                .toLowerCase();
+
+
+            if (
+                normalizedRisk.includes(
+                    "high"
+                ) ||
+                normalizedRisk.includes(
+                    "critical"
+                )
+            ) {
+
+                panel.classList.remove(
+                    "d-none"
+                );
+
+            } else {
+
+                panel.classList.add(
+                    "d-none"
+                );
+
+            }
+
+        }
+                function setSendingState(
+            isSending
+        ) {
+
+            const sendButton =
+                document.getElementById(
+                    "sendReplyButton"
+                );
+
+
+            const sendButtonText =
+                document.getElementById(
+                    "sendButtonText"
+                );
+
+
+            const sendButtonLoader =
+                document.getElementById(
+                    "sendButtonLoader"
+                );
+
+
+            const replyInput =
+                document.getElementById(
+                    "agentReplyInput"
+                );
+
+
+            sendButton.disabled =
+                isSending;
+
+
+            replyInput.disabled =
+                isSending;
+
+
+            sendButtonText.textContent =
+                isSending
+                    ? "Sending"
+                    : "Send";
+
+
+            if (isSending) {
+
+                sendButtonLoader.classList.remove(
+                    "d-none"
+                );
+
+            } else {
+
+                sendButtonLoader.classList.add(
+                    "d-none"
+                );
+
+            }
+
+        }
+
+
+        function enableConversation() {
+
+            const replyInput =
+                document.getElementById(
+                    "agentReplyInput"
+                );
+
+
+            const sendButton =
+                document.getElementById(
+                    "sendReplyButton"
+                );
+
+
+            const generateButton =
+                document.getElementById(
+                    "generateSuggestionButton"
+                );
+
+
+            replyInput.disabled = false;
+
+
+            sendButton.disabled = false;
+
+
+            if (generateButton) {
+
+                generateButton.disabled = false;
+
+            }
+
+
+            replyInput.placeholder =
+                "Type your support reply or use the AI agent suggestion...";
+
+        }
+
+
+        function disableConversation() {
+
+            const replyInput =
+                document.getElementById(
+                    "agentReplyInput"
+                );
+
+
+            const sendButton =
+                document.getElementById(
+                    "sendReplyButton"
+                );
+
+
+            const generateButton =
+                document.getElementById(
+                    "generateSuggestionButton"
+                );
+
+
+            const useButton =
+                document.getElementById(
+                    "useSuggestionButton"
+                );
+
+
+            replyInput.disabled = true;
+
+
+            sendButton.disabled = true;
+
+
+            if (generateButton) {
+
+                generateButton.disabled = true;
+
+            }
+
+
+            if (useButton) {
+
+                useButton.disabled = true;
+
+            }
+
+        }
+
+
+        function showError(
+            message
+        ) {
+
+            const errorBox =
+                document.getElementById(
+                    "pageError"
+                );
+
+
+            errorBox.textContent =
+                message ||
+                "Something went wrong.";
+
+
+            errorBox.classList.remove(
+                "d-none"
+            );
+
+
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+
+        }
+
+
+        function clearError() {
+
+            const errorBox =
+                document.getElementById(
+                    "pageError"
+                );
+
+
+            errorBox.textContent = "";
+
+
+            errorBox.classList.add(
+                "d-none"
+            );
+
+        }
+
+
+        function scrollChatToBottom() {
+
+            const chatArea =
+                document.getElementById(
+                    "chatArea"
+                );
+
+
+            chatArea.scrollTop =
+                chatArea.scrollHeight;
+
+        }
+
+
+        function getCurrentTime() {
+
+            return new Date()
+                .toLocaleTimeString(
+                    [],
+                    {
+                        hour:"2-digit",
+                        minute:"2-digit"
+                    }
+                );
+
+        }
+
+
+        function escapeHtml(
+            value
+        ) {
+
+            return String(
+                value ??
+                ""
+            )
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+        }
+
+
+        async function endSession() {
+
+            if (!sessionId) {
+
+                showError(
+                    "Session ID is missing."
+                );
+
+                return;
+
+            }
+
+
+            const endButton =
+                document.getElementById(
+                    "endSessionButton"
+                );
+
+
+            clearError();
+
+
+            endButton.disabled = true;
+
+
+            endButton.innerHTML = `
+                <span class="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true">
+                </span>
+
+                Ending...
+            `;
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/end-session",
+                        {
+                            method:"POST",
+
+                            headers:{
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    session_id:
+                                        sessionId
+                                })
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    result.status !== "success"
+                ) {
+
+                    throw new Error(
+                        result.message ||
+                        "Unable to end the session."
+                    );
+
+                }
+
+
+                const reportUrl =
+                    result.report_url ||
+                    `/report/${sessionId}`;
+
+
+                sessionStorage.removeItem(
+                    "current_customer_message"
+                );
+
+
+                sessionStorage.removeItem(
+                    "conversation_history"
+                );
+
+
+                sessionStorage.removeItem(
+                    "interaction_mode"
+                );
+
+
+                sessionStorage.removeItem(
+                    "session_data"
+                );
+
+
+                sessionStorage.removeItem(
+                    "session_id"
+                );
+
+
+                window.location.href =
+                    reportUrl;
+
+            } catch (error) {
+
+                showError(
+                    error.message ||
+                    "Something went wrong while ending the session."
+                );
+
+
+                endButton.disabled = false;
+
+
+                endButton.innerHTML = `
+                    <i class="bi bi-stop-circle"></i>
+
+                    End Session
+                `;
+
+            }
+
+        }
+
+    </script>
 
 </body>
 

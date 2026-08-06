@@ -16,6 +16,7 @@ class SessionManager:
 
     def create_session(
         self,
+        interaction_mode,
         product,
         scenario,
         customer_persona,
@@ -30,6 +31,7 @@ class SessionManager:
 
         session_data = {
             "session_id": session_id,
+            "interaction_mode": interaction_mode,
             "product": product,
             "scenario": scenario,
             "customer_persona": customer_persona,
