@@ -14,6 +14,21 @@
             "chunks_created": 2,
             "status": "Ready",
             "uploaded_at": "2026-08-06T22:39:22"
+        },
+        {
+            "document_id": "9cf7c05f-38c0-41bf-9061-d0653f7c90a7",
+            "title": "wrong product",
+            "file_name": "amazon_wrong_or_damaged_item_policy.pdf",
+            "stored_file_name": "9cf7c05f-38c0-41bf-9061-d0653f7c90a7_amazon_wrong_or_damaged_item_policy.pdf",
+            "product": "Amazon",
+            "scenario": "Wrong Product",
+            "file_type": "PDF",
+            "file_path": "C:\\AI\\AI-Customer-Support-Coach\\agents\\knowledge_data\\uploads\\9cf7c05f-38c0-41bf-9061-d0653f7c90a7_amazon_wrong_or_damaged_item_policy.pdf",
+            "characters_extracted": 1127,
+            "pages_processed": 1,
+            "chunks_created": 2,
+            "status": "Ready",
+            "uploaded_at": "2026-08-06T23:24:45"
         }
     ],
     "chunks": [
@@ -42,6 +57,32 @@
             "content": "reversed, or\npending.\nCustomer Guidance\nExplain the current refund status clearly. Do not promise an exact credit date unless the system\nprovides one. If the refund is processed but not visible, ask the customer to verify the original payment\nmethod and allow the applicable banking time.\nEscalation\nEscalate when the refund has exceeded the stated processing window, the transaction shows failed or\nreversed, or the customer has already contacted support multiple times without resolution.\nRecommended Agent Response\nAcknowledge the delay, confirm that you will verify the refund reference and payment method, provide\nthe next step, and avoid repeating a generic waiting message.",
             "normalized_content": "reversed or pending customer guidance explain the current refund status clearly do not promise an exact credit date unless the system provides one if the refund is processed but not visible ask the customer to verify the original payment method and allow the applicable banking time escalation escalate when the refund has exceeded the stated processing window the transaction shows failed or reversed or the customer has already contacted support multiple times without resolution recommended agent response acknowledge the delay confirm that you will verify the refund reference and payment method provide the next step and avoid repeating a generic waiting message",
             "uploaded_at": "2026-08-06T22:39:22"
+        },
+        {
+            "chunk_id": "e5cc96d0-5df1-41ef-b0e2-124e994fca10",
+            "document_id": "9cf7c05f-38c0-41bf-9061-d0653f7c90a7",
+            "chunk_number": 1,
+            "title": "wrong product",
+            "file_name": "amazon_wrong_or_damaged_item_policy.pdf",
+            "product": "Amazon",
+            "scenario": "Wrong Product",
+            "page_number": 1,
+            "content": "Amazon Wrong or Damaged Item Support Policy\nProduct: Amazon Scenario: Wrong Product / Damaged Product\nDemo policy document created for testing an AI customer-support knowledge base. This is sample content, not an official\ncompany policy.\nPurpose\nUse this guidance when the delivered item is different from the order, incomplete, broken, cracked,\ndefective, or damaged in transit.\nEvidence and Verification\nStep\nGuidance\n1\nConfirm the order ID, ordered product, received product, and delivery date.\n2\nAsk for photos only when required by the support process.\n3\nCheck whether replacement, return, or refund is available for the item.\nResolution Options\nOffer only the options supported by the order status and item category. Clearly explain whether pickup,\nreplacement shipment, or refund verification is required.\nEscalation",
+            "normalized_content": "amazon wrong or damaged item support policy product amazon scenario wrong product damaged product demo policy document created for testing an ai customer support knowledge base this is sample content not an official company policy purpose use this guidance when the delivered item is different from the order incomplete broken cracked defective or damaged in transit evidence and verification step guidance 1 confirm the order id ordered product received product and delivery date 2 ask for photos only when required by the support process 3 check whether replacement return or refund is available for the item resolution options offer only the options supported by the order status and item category clearly explain whether pickup replacement shipment or refund verification is required escalation",
+            "uploaded_at": "2026-08-06T23:24:45"
+        },
+        {
+            "chunk_id": "dc2b867a-89fc-4b53-a26b-802e5b319873",
+            "document_id": "9cf7c05f-38c0-41bf-9061-d0653f7c90a7",
+            "chunk_number": 2,
+            "title": "wrong product",
+            "file_name": "amazon_wrong_or_damaged_item_policy.pdf",
+            "product": "Amazon",
+            "scenario": "Wrong Product",
+            "page_number": 1,
+            "content": "supported by the order status and item category. Clearly explain whether pickup,\nreplacement shipment, or refund verification is required.\nEscalation\nEscalate repeated wrong-item deliveries, high-value item mismatches, safety concerns, or cases where\nthe available resolution fails.\nRecommended Agent Response\nApologize for the incorrect or damaged delivery, confirm the mismatch or condition, and guide the\ncustomer to the correct supported resolution.",
+            "normalized_content": "supported by the order status and item category clearly explain whether pickup replacement shipment or refund verification is required escalation escalate repeated wrong item deliveries high value item mismatches safety concerns or cases where the available resolution fails recommended agent response apologize for the incorrect or damaged delivery confirm the mismatch or condition and guide the customer to the correct supported resolution",
+            "uploaded_at": "2026-08-06T23:24:45"
         }
     ]
 }

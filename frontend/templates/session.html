@@ -10,11 +10,15 @@
 
     <title>Create Session | AI Coach</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
 
 </head>
 
@@ -67,7 +71,7 @@
 
         </h1>
 
-        <p>
+        <p id="modeDescription">
 
             Create a realistic customer support scenario
             before launching the AI coaching simulator.
@@ -100,9 +104,25 @@
 
                 <!-- Error Message -->
 
-                <div id="errorMessage"
-                     class="alert alert-danger d-none"
-                     role="alert">
+                <div
+                    id="errorMessage"
+                    class="alert alert-danger d-none"
+                    role="alert"
+                >
+                </div>
+
+
+                <!-- Selected Mode Notice -->
+
+                <div
+                    id="selectedModeNotice"
+                    class="alert alert-primary mb-4"
+                >
+
+                    Selected Mode:
+                    <strong id="selectedModeText">
+                        Simulator
+                    </strong>
 
                 </div>
 
@@ -111,33 +131,30 @@
 
                 <div class="mb-4">
 
-                    <label for="mode"
-                           class="form-label">
+                    <label
+                        for="mode"
+                        class="form-label"
+                    >
 
                         Interaction Mode
 
                     </label>
 
-                    <select id="mode"
-                            class="form-select">
+                    <select
+                        id="mode"
+                        class="form-select"
+                    >
 
-                        <option value="Simulator"
-                                selected>
-
+                        <option value="Simulator">
                             Simulator
-
                         </option>
 
                         <option value="Manual">
-
                             Manual
-
                         </option>
 
                         <option value="Replay">
-
                             Replay
-
                         </option>
 
                     </select>
@@ -149,17 +166,21 @@
 
                 <div class="mb-4">
 
-                    <label for="product"
-                           class="form-label">
+                    <label
+                        for="product"
+                        class="form-label"
+                    >
 
                         Product
 
                     </label>
 
-                    <input id="product"
-                           class="form-control"
-                           value="Amazon"
-                           placeholder="Enter product name">
+                    <input
+                        id="product"
+                        class="form-control"
+                        value="Amazon"
+                        placeholder="Enter product name"
+                    >
 
                 </div>
 
@@ -168,93 +189,87 @@
 
                 <div class="mb-4">
 
-                    <label for="scenario"
-                           class="form-label">
+                    <label
+                        for="scenario"
+                        class="form-label"
+                    >
 
                         Scenario
 
                     </label>
 
-                    <select id="scenario"
-                            class="form-select">
+                    <select
+                        id="scenario"
+                        class="form-select"
+                    >
 
-                        <option value="Return Request"
-                                selected>
-
+                        <option
+                            value="Return Request"
+                            selected
+                        >
                             Return Request
-
                         </option>
 
                         <option value="Refund Delay">
-
                             Refund Delay
-
                         </option>
 
                         <option value="Damaged Product">
-
                             Damaged Product
-
                         </option>
 
                         <option value="Late Delivery">
-
                             Late Delivery
-
                         </option>
 
                         <option value="Wrong Product">
-
                             Wrong Product
-
                         </option>
 
                         <option value="General Support">
-
                             General Support
-
                         </option>
 
                     </select>
 
                 </div>
-                                <!-- Customer Persona -->
+
+
+                <!-- Customer Persona -->
 
                 <div class="mb-4">
 
-                    <label for="persona"
-                           class="form-label">
+                    <label
+                        for="persona"
+                        class="form-label"
+                    >
 
                         Customer Persona
 
                     </label>
 
-                    <select id="persona"
-                            class="form-select">
+                    <select
+                        id="persona"
+                        class="form-select"
+                    >
 
                         <option value="Calm">
-
                             Calm
-
                         </option>
 
                         <option value="Angry">
-
                             Angry
-
                         </option>
 
                         <option value="Confused">
-
                             Confused
-
                         </option>
 
-                        <option value="Frustrated"
-                                selected>
-
+                        <option
+                            value="Frustrated"
+                            selected
+                        >
                             Frustrated
-
                         </option>
 
                     </select>
@@ -268,33 +283,33 @@
 
                     <div class="col-md-6 mb-4">
 
-                        <label for="difficulty"
-                               class="form-label">
+                        <label
+                            for="difficulty"
+                            class="form-label"
+                        >
 
                             Difficulty
 
                         </label>
 
-                        <select id="difficulty"
-                                class="form-select">
+                        <select
+                            id="difficulty"
+                            class="form-select"
+                        >
 
                             <option value="Easy">
-
                                 Easy
-
                             </option>
 
-                            <option value="Medium"
-                                    selected>
-
+                            <option
+                                value="Medium"
+                                selected
+                            >
                                 Medium
-
                             </option>
 
                             <option value="Hard">
-
                                 Hard
-
                             </option>
 
                         </select>
@@ -304,33 +319,33 @@
 
                     <div class="col-md-6 mb-4">
 
-                        <label for="language"
-                               class="form-label">
+                        <label
+                            for="language"
+                            class="form-label"
+                        >
 
                             Language
 
                         </label>
 
-                        <select id="language"
-                                class="form-select">
+                        <select
+                            id="language"
+                            class="form-select"
+                        >
 
-                            <option value="English"
-                                    selected>
-
+                            <option
+                                value="English"
+                                selected
+                            >
                                 English
-
                             </option>
 
                             <option value="Hindi">
-
                                 Hindi
-
                             </option>
 
                             <option value="Telugu">
-
                                 Telugu
-
                             </option>
 
                         </select>
@@ -342,10 +357,12 @@
 
                 <!-- Start Button -->
 
-                <button id="startButton"
-                        type="button"
-                        onclick="createSession()"
-                        class="btn btn-primary-custom w-100">
+                <button
+                    id="startButton"
+                    type="button"
+                    onclick="createSession()"
+                    class="btn btn-primary-custom w-100"
+                >
 
                     <span id="buttonText">
 
@@ -353,11 +370,12 @@
 
                     </span>
 
-                    <span id="buttonLoader"
-                          class="spinner-border spinner-border-sm ms-2 d-none"
-                          role="status"
-                          aria-hidden="true">
-
+                    <span
+                        id="buttonLoader"
+                        class="spinner-border spinner-border-sm ms-2 d-none"
+                        role="status"
+                        aria-hidden="true"
+                    >
                     </span>
 
                 </button>
@@ -376,15 +394,11 @@
     <div class="container">
 
         <p>
-
             AI Customer Support Coaching Assistant
-
         </p>
 
         <p>
-
             Infosys Internship Project • Vidzai Digital
-
         </p>
 
     </div>
@@ -393,54 +407,187 @@
 
 
 <script>
-    async function createSession() {
 
-    const startButton =
-        document.getElementById("startButton");
+function getModeFromUrl() {
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const requestedMode =
+        params.get("mode");
+
+    if (!requestedMode) {
+        return "Simulator";
+    }
+
+    const normalized =
+        requestedMode
+        .trim()
+        .toLowerCase();
+
+    if (normalized === "manual") {
+        return "Manual";
+    }
+
+    if (normalized === "replay") {
+        return "Replay";
+    }
+
+    return "Simulator";
+}
+
+
+function updateModeUI() {
+
+    const mode =
+        document.getElementById(
+            "mode"
+        ).value;
+
+    const selectedModeText =
+        document.getElementById(
+            "selectedModeText"
+        );
+
+    const modeDescription =
+        document.getElementById(
+            "modeDescription"
+        );
 
     const buttonText =
-        document.getElementById("buttonText");
+        document.getElementById(
+            "buttonText"
+        );
+
+
+    selectedModeText.textContent =
+        mode;
+
+
+    if (mode === "Manual") {
+
+        modeDescription.textContent =
+            "In Manual Mode, the support trainee manually enters the customer's message and receives AI analysis, knowledge recommendations, coaching feedback and escalation monitoring.";
+
+        buttonText.textContent =
+            "✍️ Start Manual Coaching Session";
+
+    }
+
+    else if (mode === "Replay") {
+
+        modeDescription.textContent =
+            "In Replay Mode, a previous customer-support transcript is replayed message by message for analysis and coaching.";
+
+        buttonText.textContent =
+            "🔁 Start Replay Coaching Session";
+
+    }
+
+    else {
+
+        modeDescription.textContent =
+            "In Simulator Mode, an AI customer generates realistic messages and continues the conversation based on the trainee's replies.";
+
+        buttonText.textContent =
+            "🚀 Start AI Coaching Session";
+
+    }
+
+}
+
+
+function initializeMode() {
+
+    const modeSelect =
+        document.getElementById(
+            "mode"
+        );
+
+    const requestedMode =
+        getModeFromUrl();
+
+    modeSelect.value =
+        requestedMode;
+
+    updateModeUI();
+
+}
+
+
+async function createSession() {
+
+    const startButton =
+        document.getElementById(
+            "startButton"
+        );
+
+    const buttonText =
+        document.getElementById(
+            "buttonText"
+        );
 
     const buttonLoader =
-        document.getElementById("buttonLoader");
+        document.getElementById(
+            "buttonLoader"
+        );
 
     const errorMessage =
-        document.getElementById("errorMessage");
+        document.getElementById(
+            "errorMessage"
+        );
 
 
-    errorMessage.classList.add("d-none");
+    errorMessage.classList.add(
+        "d-none"
+    );
 
-    errorMessage.textContent = "";
+    errorMessage.textContent =
+        "";
 
 
     const product =
-        document.getElementById("product")
+        document.getElementById(
+            "product"
+        )
         .value
         .trim();
 
 
     const scenario =
-        document.getElementById("scenario")
+        document.getElementById(
+            "scenario"
+        )
         .value;
 
 
     const persona =
-        document.getElementById("persona")
+        document.getElementById(
+            "persona"
+        )
         .value;
 
 
     const difficulty =
-        document.getElementById("difficulty")
+        document.getElementById(
+            "difficulty"
+        )
         .value;
 
 
     const language =
-        document.getElementById("language")
+        document.getElementById(
+            "language"
+        )
         .value;
 
 
     const interactionMode =
-        document.getElementById("mode")
+        document.getElementById(
+            "mode"
+        )
         .value;
 
 
@@ -451,6 +598,7 @@
         );
 
         return;
+
     }
 
 
@@ -477,10 +625,13 @@
     };
 
 
-    startButton.disabled = true;
+    startButton.disabled =
+        true;
+
 
     buttonText.textContent =
         "Creating Session...";
+
 
     buttonLoader.classList.remove(
         "d-none"
@@ -493,7 +644,8 @@
             await fetch(
                 "/create-session",
                 {
-                    method: "POST",
+                    method:
+                        "POST",
 
                     headers: {
 
@@ -520,88 +672,136 @@
         ) {
 
             throw new Error(
-
                 result.message ||
                 "Session creation failed."
-
             );
+
         }
 
 
-        sessionStorage.setItem(
+        /*
+        -----------------------------------------
+        IMPORTANT:
+        Remove old session state before saving
+        the newly-created session.
+        -----------------------------------------
+        */
 
+        sessionStorage.removeItem(
+            "session_id"
+        );
+
+        sessionStorage.removeItem(
+            "current_customer_message"
+        );
+
+        sessionStorage.removeItem(
+            "session_data"
+        );
+
+        sessionStorage.removeItem(
+            "interaction_mode"
+        );
+
+        sessionStorage.removeItem(
+            "conversation_history"
+        );
+
+        sessionStorage.removeItem(
+            "customer_analysis"
+        );
+
+        sessionStorage.removeItem(
+            "knowledge"
+        );
+
+        sessionStorage.removeItem(
+            "evaluation"
+        );
+
+        sessionStorage.removeItem(
+            "coaching"
+        );
+
+        sessionStorage.removeItem(
+            "escalation"
+        );
+
+
+        /*
+        -----------------------------------------
+        Store new session information
+        -----------------------------------------
+        */
+
+        sessionStorage.setItem(
             "session_id",
-
             result.session_id
-
         );
 
 
         sessionStorage.setItem(
-
             "current_customer_message",
-
-            result.customer_message
-
+            result.customer_message || ""
         );
 
 
         sessionStorage.setItem(
-
             "session_data",
-
             JSON.stringify(
                 result.session
             )
-
         );
 
 
         sessionStorage.setItem(
-
             "interaction_mode",
-
             interactionMode
-
         );
 
+
+        /*
+        -----------------------------------------
+        Open the common support console.
+        simulator.html decides what UI to show
+        using interaction_mode.
+        -----------------------------------------
+        */
 
         window.location.href =
             "/simulator";
 
+    }
 
-    } catch (error) {
+    catch (error) {
 
         showError(
-
             error.message ||
-
             "Unable to create the session. Please try again."
-
         );
 
 
-        startButton.disabled = false;
+        startButton.disabled =
+            false;
 
 
-        buttonText.textContent =
-
-            "🚀 Start AI Coaching Session";
+        updateModeUI();
 
 
         buttonLoader.classList.add(
-
             "d-none"
-
         );
+
     }
+
 }
 
 
-function showError(message) {
+function showError(
+    message
+) {
 
     const errorMessage =
-
         document.getElementById(
             "errorMessage"
         );
@@ -612,30 +812,47 @@ function showError(message) {
 
 
     errorMessage.classList.remove(
-
         "d-none"
-
     );
+
 }
 
 
+document.getElementById(
+    "mode"
+).addEventListener(
+    "change",
+    updateModeUI
+);
+
+
 document.addEventListener(
+    "DOMContentLoaded",
+    initializeMode
+);
 
+
+document.addEventListener(
     "keydown",
-
     function(event) {
 
-        if (event.key === "Enter") {
+        if (
+            event.key === "Enter"
+        ) {
 
             createSession();
 
         }
+
     }
 );
+
 </script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
 
 </body>
 

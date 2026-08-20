@@ -9,6 +9,7 @@ from agents.knowledge_agent import KnowledgeRecommendationAgent
 from agents.orchestrator import AgentOrchestrator
 from agents.response_evaluator import ResponseEvaluator
 from agents.sentiment_agent import IntentSentimentAgent
+from agents.post_interaction_summary import PostInteractionSummaryAgent
 
 
 # =========================================================
@@ -16,11 +17,20 @@ from agents.sentiment_agent import IntentSentimentAgent
 # =========================================================
 
 simulator_agent = CustomerSimulatorAgent()
+
 sentiment_agent = IntentSentimentAgent()
+
 knowledge_agent = KnowledgeRecommendationAgent()
+
 coaching_pipeline = CoachingPipeline()
+
 response_evaluator = ResponseEvaluator()
+
 orchestrator = AgentOrchestrator()
+
+post_interaction_agent = (
+    PostInteractionSummaryAgent()
+)
 
 
 # =========================================================
@@ -29,7 +39,7 @@ orchestrator = AgentOrchestrator()
 
 def get_json_data():
     """
-    Safely reads JSON data from the frontend.
+    Safely reads JSON data from frontend.
     """
 
     return request.get_json(
@@ -39,27 +49,64 @@ def get_json_data():
 
 def get_knowledge(
     product,
-    customer_message
+    customer_message,
+    scenario=None
 ):
     """
-    Retrieves relevant knowledge while supporting
-    different knowledge-agent method signatures.
+    Retrieves relevant knowledge.
+
+    Supports:
+    product + message + scenario
+
+    and older knowledge-agent
+    method signatures.
     """
 
     try:
-        return knowledge_agent.retrieve_knowledge(
-            product,
-            customer_message
+
+        return (
+            knowledge_agent
+            .retrieve_knowledge(
+                product,
+                customer_message,
+                scenario
+            )
         )
 
     except TypeError:
 
         try:
-            return knowledge_agent.retrieve_knowledge(
-                customer_message
+
+            return (
+                knowledge_agent
+                .retrieve_knowledge(
+                    product,
+                    customer_message
+                )
             )
 
+        except TypeError:
+
+            try:
+
+                return (
+                    knowledge_agent
+                    .retrieve_knowledge(
+                        customer_message
+                    )
+                )
+
+            except Exception as error:
+
+                print(
+                    "KNOWLEDGE ERROR =",
+                    error
+                )
+
+                return {}
+
         except Exception as error:
+
             print(
                 "KNOWLEDGE ERROR =",
                 error
@@ -68,6 +115,7 @@ def get_knowledge(
             return {}
 
     except Exception as error:
+
         print(
             "KNOWLEDGE ERROR =",
             error
@@ -80,22 +128,25 @@ def get_active_session(
     session_id
 ):
     """
-    Returns an active session or raises
-    a clear validation error.
+    Returns active session
+    or raises validation error.
     """
 
     if not session_id:
+
         raise ValueError(
             "Session ID is required"
         )
 
     current_session = (
-        session_manager.get_session(
+        session_manager
+        .get_session(
             session_id
         )
     )
 
     if not current_session:
+
         raise LookupError(
             "Session not found"
         )
@@ -104,8 +155,10 @@ def get_active_session(
         current_session.get(
             "status"
         )
-        != "Active"
+        !=
+        "Active"
     ):
+
         raise ValueError(
             "This session is already completed"
         )
@@ -117,7 +170,7 @@ def generate_opening_customer_message(
     tracked_session
 ):
     """
-    Generates the first customer message
+    Generates first customer message
     depending on interaction mode.
     """
 
@@ -128,40 +181,61 @@ def generate_opening_customer_message(
         )
     ).strip().lower()
 
+
     if interaction_mode == "manual":
+
         return ""
 
+
     if interaction_mode == "replay":
+
         return (
             "Upload a transcript "
             "to begin replay coaching."
         )
 
-    return simulator_agent.generate_message(
-        product=tracked_session.get(
-            "product",
-            "Amazon"
-        ),
-        scenario=tracked_session.get(
-            "scenario",
-            "General Support"
-        ),
-        persona=tracked_session.get(
-            "customer_persona",
-            "Regular Customer"
-        ),
-        language=tracked_session.get(
-            "language",
-            "English"
-        ),
-        difficulty=tracked_session.get(
-            "difficulty",
-            "Medium"
-        ),
-        conversation_history=[],
-        session_id=tracked_session.get(
-            "session_id",
-            "default"
+
+    return (
+        simulator_agent
+        .generate_message(
+            product=
+                tracked_session.get(
+                    "product",
+                    "Amazon"
+                ),
+
+            scenario=
+                tracked_session.get(
+                    "scenario",
+                    "General Support"
+                ),
+
+            persona=
+                tracked_session.get(
+                    "customer_persona",
+                    "Regular Customer"
+                ),
+
+            language=
+                tracked_session.get(
+                    "language",
+                    "English"
+                ),
+
+            difficulty=
+                tracked_session.get(
+                    "difficulty",
+                    "Medium"
+                ),
+
+            conversation_history=
+                [],
+
+            session_id=
+                tracked_session.get(
+                    "session_id",
+                    "default"
+                )
         )
     )
 
@@ -170,14 +244,18 @@ def generate_opening_customer_message(
 # ROUTES
 # =========================================================
 
-def register_routes(app):
+def register_routes(
+    app
+):
 
-    # -----------------------------------------------------
+
+    # =====================================================
     # PAGE ROUTES
-    # -----------------------------------------------------
+    # =====================================================
 
     @app.route("/")
     def home():
+
         return render_template(
             "index.html"
         )
@@ -185,6 +263,7 @@ def register_routes(app):
 
     @app.route("/session")
     def session_page():
+
         return render_template(
             "session.html"
         )
@@ -192,6 +271,7 @@ def register_routes(app):
 
     @app.route("/simulator")
     def simulator_page():
+
         return render_template(
             "simulator.html"
         )
@@ -203,12 +283,10 @@ def register_routes(app):
     def report_page(
         session_id
     ):
-        """
-        Opens the final report page.
-        """
 
         current_session = (
-            session_manager.get_session(
+            session_manager
+            .get_session(
                 session_id
             )
         )
@@ -221,6 +299,7 @@ def register_routes(app):
                 session_found=False
             ), 404
 
+
         return render_template(
             "report.html",
             session_id=session_id,
@@ -228,30 +307,46 @@ def register_routes(app):
         )
 
 
-    # -----------------------------------------------------
+    # NEW PAGE FOR ANALYTICS
+
+    @app.route(
+        "/analytics"
+    )
+    def analytics_page():
+        """
+        Opens performance analytics page.
+        """
+
+        return render_template(
+            "analytics.html"
+        )
+
+
+    # =====================================================
     # CREATE SESSION
-    # -----------------------------------------------------
+    # =====================================================
 
     @app.route(
         "/create-session",
         methods=["POST"]
     )
     def create_session():
-        """
-        Creates a Simulator, Manual,
-        or Replay coaching session.
-        """
 
         try:
+
             data = get_json_data()
 
             session_config = (
-                SessionConfig(**data)
+                SessionConfig(
+                    **data
+                )
             )
 
             config_data = (
-                session_config.model_dump()
+                session_config
+                .model_dump()
             )
+
 
             interaction_mode = str(
                 config_data.get(
@@ -260,12 +355,14 @@ def register_routes(app):
                 )
             ).strip()
 
+
             product = str(
                 config_data.get(
                     "product",
                     "Amazon"
                 )
             ).strip()
+
 
             scenario = str(
                 config_data.get(
@@ -274,12 +371,14 @@ def register_routes(app):
                 )
             ).strip()
 
+
             customer_persona = str(
                 config_data.get(
                     "customer_persona",
                     "Regular Customer"
                 )
             ).strip()
+
 
             difficulty = str(
                 config_data.get(
@@ -288,6 +387,7 @@ def register_routes(app):
                 )
             ).strip()
 
+
             language = str(
                 config_data.get(
                     "language",
@@ -295,30 +395,40 @@ def register_routes(app):
                 )
             ).strip()
 
+
             tracked_session = (
-                session_manager.create_session(
+                session_manager
+                .create_session(
                     interaction_mode=
                         interaction_mode,
+
                     product=
                         product,
+
                     scenario=
                         scenario,
+
                     customer_persona=
                         customer_persona,
+
                     difficulty=
                         difficulty,
+
                     language=
                         language
                 )
             )
 
+
             tracked_session[
                 "conversation_history"
             ] = []
 
+
             tracked_session[
                 "previous_escalation_score"
             ] = 0
+
 
             first_customer_message = (
                 generate_opening_customer_message(
@@ -326,39 +436,35 @@ def register_routes(app):
                 )
             )
 
+
             tracked_session[
                 "current_customer_message"
-            ] = first_customer_message
-
-            print(
-                "SELECTED INTERACTION MODE =",
-                interaction_mode
-            )
-
-            print(
-                "SELECTED LANGUAGE =",
-                language
-            )
-
-            print(
-                "OPENING CUSTOMER MESSAGE =",
+            ] = (
                 first_customer_message
             )
 
+
             return jsonify({
+
                 "status":
                     "success",
+
                 "message":
                     "Session created successfully",
+
                 "session_id":
                     tracked_session[
                         "session_id"
                     ],
+
                 "session":
                     tracked_session,
+
                 "customer_message":
                     first_customer_message
+
             }), 201
+
 
         except Exception as error:
 
@@ -368,38 +474,25 @@ def register_routes(app):
             )
 
             return jsonify({
+
                 "status":
                     "error",
+
                 "message":
                     str(error)
+
             }), 400
-            # -----------------------------------------------------
-    # NEXT TURN (NEW AI CONVERSATION FLOW)
-    # -----------------------------------------------------
+
+
+    # =====================================================
+    # NEXT TURN
+    # =====================================================
 
     @app.route(
         "/next-turn",
         methods=["POST"]
     )
     def next_turn():
-        """
-        Runs one complete AI conversation turn.
-
-        Flow:
-        Customer Message
-              ↓
-        Analysis
-              ↓
-        Knowledge
-              ↓
-        Evaluation
-              ↓
-        Coaching
-              ↓
-        Escalation
-              ↓
-        Next AI Customer Message
-        """
 
         try:
 
@@ -419,11 +512,26 @@ def register_routes(app):
                 )
             ).strip()
 
+
+            if not agent_reply:
+
+                return jsonify({
+
+                    "status":
+                        "error",
+
+                    "message":
+                        "Agent reply is required"
+
+                }), 400
+
+
             current_session = (
                 get_active_session(
                     session_id
                 )
             )
+
 
             customer_message = str(
                 current_session.get(
@@ -432,180 +540,34 @@ def register_routes(app):
                 )
             ).strip()
 
+
             if not customer_message:
 
                 return jsonify({
+
                     "status":
                         "error",
+
                     "message":
                         "Customer message is empty."
+
                 }), 400
 
+
             result = (
-                orchestrator.process_turn(
-                    session=current_session,
+                orchestrator
+                .process_turn(
+                    session=
+                        current_session,
+
                     customer_message=
                         customer_message,
+
                     agent_reply=
                         agent_reply
                 )
             )
 
-            current_session[
-                "current_customer_message"
-            ] = result.get(
-                "next_customer_message",
-                ""
-            )
-
-            return jsonify({
-
-                "status":
-                    "success",
-
-                "customer_message":
-                    result.get(
-                        "next_customer_message",
-                        ""
-                    ),
-
-                "analysis":
-                    result.get(
-                        "customer_analysis",
-                        {}
-                    ),
-
-                "knowledge":
-                    result.get(
-                        "knowledge",
-                        {}
-                    ),
-
-                "evaluation":
-                    result.get(
-                        "evaluation",
-                        {}
-                    ),
-
-                "coaching":
-                    result.get(
-                        "coaching",
-                        {}
-                    ),
-
-                "escalation":
-                    result.get(
-                        "escalation",
-                        {}
-                    )
-
-            }), 200
-
-        except LookupError as error:
-
-            return jsonify({
-                "status":
-                    "error",
-                "message":
-                    str(error)
-            }), 404
-
-        except Exception as error:
-
-            print(
-                "NEXT TURN ERROR =",
-                error
-            )
-
-            return jsonify({
-                "status":
-                    "error",
-                "message":
-                    str(error)
-            }), 500
-            # -----------------------------------------------------
-    # PROCESS REPLY
-    # -----------------------------------------------------
-
-    @app.route(
-        "/process-reply",
-        methods=["POST"]
-    )
-    def process_reply():
-        """
-        Compatibility endpoint used by the
-        current simulator frontend.
-
-        It runs the same complete AI conversation
-        flow as /next-turn.
-        """
-
-        try:
-            data = get_json_data()
-
-            session_id = str(
-                data.get(
-                    "session_id",
-                    ""
-                )
-            ).strip()
-
-            agent_reply = str(
-                data.get(
-                    "agent_reply",
-                    ""
-                )
-            ).strip()
-
-            if not session_id:
-
-                return jsonify({
-                    "status": "error",
-                    "message":
-                        "Session ID is required"
-                }), 400
-
-            if not agent_reply:
-
-                return jsonify({
-                    "status": "error",
-                    "message":
-                        "Agent reply is required"
-                }), 400
-
-            current_session = (
-                get_active_session(
-                    session_id
-                )
-            )
-
-            customer_message = str(
-                data.get(
-                    "customer_message"
-                )
-                or current_session.get(
-                    "current_customer_message",
-                    ""
-                )
-            ).strip()
-
-            if not customer_message:
-
-                return jsonify({
-                    "status": "error",
-                    "message":
-                        "Customer message is required"
-                }), 400
-
-            result = (
-                orchestrator.process_turn(
-                    session=current_session,
-                    customer_message=
-                        customer_message,
-                    agent_reply=
-                        agent_reply
-                )
-            )
 
             customer_analysis = (
                 result.get(
@@ -614,24 +576,32 @@ def register_routes(app):
                 )
             )
 
-            knowledge = result.get(
-                "knowledge",
-                {}
+            knowledge = (
+                result.get(
+                    "knowledge",
+                    {}
+                )
             )
 
-            evaluation = result.get(
-                "evaluation",
-                {}
+            evaluation = (
+                result.get(
+                    "evaluation",
+                    {}
+                )
             )
 
-            coaching = result.get(
-                "coaching",
-                {}
+            coaching = (
+                result.get(
+                    "coaching",
+                    {}
+                )
             )
 
-            escalation = result.get(
-                "escalation",
-                {}
+            escalation = (
+                result.get(
+                    "escalation",
+                    {}
+                )
             )
 
             next_customer_message = str(
@@ -642,41 +612,332 @@ def register_routes(app):
                 or ""
             ).strip()
 
-            current_session[
-                "current_customer_message"
-            ] = next_customer_message
-
-            current_session[
-                "previous_escalation_score"
-            ] = escalation.get(
-                "risk_score",
-                0
-            )
 
             turn = (
-                session_manager.add_turn(
+                session_manager
+                .add_turn(
                     session_id=
                         session_id,
+
                     customer_message=
                         customer_message,
+
                     agent_reply=
                         agent_reply,
+
                     customer_analysis=
                         customer_analysis,
+
                     evaluation=
                         evaluation,
+
                     knowledge=
-                        knowledge
+                        knowledge,
+
+                    coaching=
+                        coaching,
+
+                    escalation=
+                        escalation
                 )
             )
 
-            turn["coaching"] = (
-                coaching
+
+            current_session[
+                "current_customer_message"
+            ] = (
+                next_customer_message
             )
 
-            turn["escalation"] = (
-                escalation
+
+            current_session[
+                "previous_escalation_score"
+            ] = (
+                escalation.get(
+                    "risk_score",
+                    0
+                )
             )
+
+
+            live_summary = (
+                session_manager
+                .calculate_summary(
+                    session_id
+                )
+            )
+
+
+            return jsonify({
+
+                "status":
+                    "success",
+
+                "turn":
+                    turn,
+
+                "customer_message":
+                    next_customer_message,
+
+                "analysis":
+                    customer_analysis,
+
+                "knowledge":
+                    knowledge,
+
+                "evaluation":
+                    evaluation,
+
+                "coaching":
+                    coaching,
+
+                "escalation":
+                    escalation,
+
+                "live_summary":
+                    live_summary
+
+            }), 200
+
+
+        except LookupError as error:
+
+            return jsonify({
+
+                "status":
+                    "error",
+
+                "message":
+                    str(error)
+
+            }), 404
+
+
+        except ValueError as error:
+
+            return jsonify({
+
+                "status":
+                    "error",
+
+                "message":
+                    str(error)
+
+            }), 400
+
+
+        except Exception as error:
+
+            print(
+                "NEXT TURN ERROR =",
+                error
+            )
+
+            return jsonify({
+
+                "status":
+                    "error",
+
+                "message":
+                    str(error)
+
+            }), 500
+
+
+    # =====================================================
+    # PROCESS REPLY
+    # =====================================================
+
+    @app.route(
+        "/process-reply",
+        methods=["POST"]
+    )
+    def process_reply():
+
+        try:
+
+            data = get_json_data()
+
+
+            session_id = str(
+                data.get(
+                    "session_id",
+                    ""
+                )
+            ).strip()
+
+
+            agent_reply = str(
+                data.get(
+                    "agent_reply",
+                    ""
+                )
+            ).strip()
+
+
+            if not session_id:
+
+                return jsonify({
+
+                    "status":
+                        "error",
+
+                    "message":
+                        "Session ID is required"
+
+                }), 400
+
+
+            if not agent_reply:
+
+                return jsonify({
+
+                    "status":
+                        "error",
+
+                    "message":
+                        "Agent reply is required"
+
+                }), 400
+
+
+            current_session = (
+                get_active_session(
+                    session_id
+                )
+            )
+
+
+            customer_message = str(
+                data.get(
+                    "customer_message"
+                )
+                or
+                current_session.get(
+                    "current_customer_message",
+                    ""
+                )
+            ).strip()
+
+
+            if not customer_message:
+
+                return jsonify({
+
+                    "status":
+                        "error",
+
+                    "message":
+                        "Customer message is required"
+
+                }), 400
+
+
+            result = (
+                orchestrator
+                .process_turn(
+                    session=
+                        current_session,
+
+                    customer_message=
+                        customer_message,
+
+                    agent_reply=
+                        agent_reply
+                )
+            )
+
+
+            customer_analysis = (
+                result.get(
+                    "customer_analysis",
+                    {}
+                )
+            )
+
+            knowledge = (
+                result.get(
+                    "knowledge",
+                    {}
+                )
+            )
+
+            evaluation = (
+                result.get(
+                    "evaluation",
+                    {}
+                )
+            )
+
+            coaching = (
+                result.get(
+                    "coaching",
+                    {}
+                )
+            )
+
+            escalation = (
+                result.get(
+                    "escalation",
+                    {}
+                )
+            )
+
+            next_customer_message = str(
+                result.get(
+                    "next_customer_message",
+                    ""
+                )
+                or ""
+            ).strip()
+
+
+            current_session[
+                "current_customer_message"
+            ] = (
+                next_customer_message
+            )
+
+
+            current_session[
+                "previous_escalation_score"
+            ] = (
+                escalation.get(
+                    "risk_score",
+                    0
+                )
+            )
+
+
+            turn = (
+                session_manager
+                .add_turn(
+                    session_id=
+                        session_id,
+
+                    customer_message=
+                        customer_message,
+
+                    agent_reply=
+                        agent_reply,
+
+                    customer_analysis=
+                        customer_analysis,
+
+                    evaluation=
+                        evaluation,
+
+                    knowledge=
+                        knowledge,
+
+                    coaching=
+                        coaching,
+
+                    escalation=
+                        escalation
+                )
+            )
+
 
             turn[
                 "ai_suggestion_used"
@@ -687,6 +948,7 @@ def register_routes(app):
                 )
             )
 
+
             turn[
                 "suggested_response"
             ] = str(
@@ -696,63 +958,75 @@ def register_routes(app):
                 )
             ).strip()
 
+
             live_summary = (
-                session_manager.calculate_summary(
+                session_manager
+                .calculate_summary(
                     session_id
                 )
             )
 
-            print(
-                "CURRENT CUSTOMER MESSAGE =",
-                customer_message
-            )
-
-            print(
-                "AGENT REPLY =",
-                agent_reply
-            )
-
-            print(
-                "NEXT AI CUSTOMER MESSAGE =",
-                next_customer_message
-            )
 
             return jsonify({
+
                 "status":
                     "success",
+
                 "message":
                     "Reply processed successfully",
+
                 "turn":
                     turn,
+
                 "analysis":
                     customer_analysis,
+
                 "evaluation":
                     evaluation,
+
                 "coaching":
                     coaching,
+
                 "knowledge":
                     knowledge,
+
                 "escalation":
                     escalation,
+
                 "next_customer_message":
                     next_customer_message,
+
                 "live_summary":
                     live_summary
+
             }), 200
+
 
         except LookupError as error:
 
             return jsonify({
-                "status": "error",
-                "message": str(error)
+
+                "status":
+                    "error",
+
+                "message":
+                    str(error)
+
             }), 404
+
 
         except ValueError as error:
 
             return jsonify({
-                "status": "error",
-                "message": str(error)
+
+                "status":
+                    "error",
+
+                "message":
+                    str(error)
+
             }), 400
+
 
         except Exception as error:
 
@@ -762,30 +1036,30 @@ def register_routes(app):
             )
 
             return jsonify({
-                "status": "error",
-                "message": str(error)
+
+                "status":
+                    "error",
+
+                "message":
+                    str(error)
+
             }), 500
-            # -----------------------------------------------------
-    # MANUAL MODE MESSAGE ANALYSIS
-    # -----------------------------------------------------
+
+
+    # =====================================================
+    # MANUAL MODE
+    # =====================================================
 
     @app.route(
         "/process-manual-message",
         methods=["POST"]
     )
     def process_manual_message():
-        """
-        Processes a manually entered customer message.
-
-        Flow:
-        1. Analyze customer message.
-        2. Retrieve relevant knowledge.
-        3. Calculate escalation risk.
-        4. Store message as the current customer message.
-        """
 
         try:
+
             data = get_json_data()
+
 
             session_id = str(
                 data.get(
@@ -794,26 +1068,34 @@ def register_routes(app):
                 )
             ).strip()
 
+
             customer_message = str(
                 data.get(
                     "customer_message"
                 )
-                or data.get(
+                or
+                data.get(
                     "message"
                 )
                 or ""
             ).strip()
 
+
             if not customer_message:
 
                 return jsonify({
+
                     "status":
                         "error",
+
                     "message":
                         "Customer message is required"
+
                 }), 400
 
+
             current_session = None
+
 
             if session_id:
 
@@ -823,12 +1105,20 @@ def register_routes(app):
                     )
                 )
 
+
             if current_session:
 
                 product = str(
                     current_session.get(
                         "product",
                         "Amazon"
+                    )
+                ).strip()
+
+                scenario = str(
+                    current_session.get(
+                        "scenario",
+                        "General Support"
                     )
                 ).strip()
 
@@ -841,16 +1131,30 @@ def register_routes(app):
                     )
                 ).strip()
 
+                scenario = str(
+                    data.get(
+                        "scenario",
+                        "General Support"
+                    )
+                ).strip()
+
+
             customer_analysis = (
-                sentiment_agent.analyze(
+                sentiment_agent
+                .analyze(
                     customer_message
                 )
             )
 
-            knowledge = get_knowledge(
-                product,
-                customer_message
+
+            knowledge = (
+                get_knowledge(
+                    product,
+                    customer_message,
+                    scenario
+                )
             )
+
 
             escalation = (
                 orchestrator
@@ -861,52 +1165,61 @@ def register_routes(app):
                 )
             )
 
+
             if current_session:
 
                 current_session[
                     "current_customer_message"
-                ] = customer_message
+                ] = (
+                    customer_message
+                )
 
-            print(
-                "MANUAL CUSTOMER MESSAGE =",
-                customer_message
-            )
-
-            print(
-                "MANUAL CUSTOMER ANALYSIS =",
-                customer_analysis
-            )
 
             return jsonify({
+
                 "status":
                     "success",
+
                 "customer_message":
                     customer_message,
+
                 "analysis":
                     customer_analysis,
+
                 "knowledge":
                     knowledge,
+
                 "escalation":
                     escalation
+
             }), 200
+
 
         except LookupError as error:
 
             return jsonify({
+
                 "status":
                     "error",
+
                 "message":
                     str(error)
+
             }), 404
+
 
         except ValueError as error:
 
             return jsonify({
+
                 "status":
                     "error",
+
                 "message":
                     str(error)
+
             }), 400
+
 
         except Exception as error:
 
@@ -916,29 +1229,30 @@ def register_routes(app):
             )
 
             return jsonify({
+
                 "status":
                     "error",
+
                 "message":
                     str(error)
+
             }), 500
 
 
-    # -----------------------------------------------------
-    # GENERATE AI SUGGESTED AGENT REPLY
-    # -----------------------------------------------------
+    # =====================================================
+    # AI SUGGESTED REPLY
+    # =====================================================
 
     @app.route(
         "/generate-suggested-reply",
         methods=["POST"]
     )
     def generate_suggested_reply():
-        """
-        Generates an AI support-agent reply
-        before the trainee sends a response.
-        """
 
         try:
+
             data = get_json_data()
+
 
             session_id = str(
                 data.get(
@@ -947,26 +1261,34 @@ def register_routes(app):
                 )
             ).strip()
 
+
             customer_message = str(
                 data.get(
                     "customer_message"
                 )
-                or data.get(
+                or
+                data.get(
                     "message"
                 )
                 or ""
             ).strip()
 
+
             if not customer_message:
 
                 return jsonify({
+
                     "status":
                         "error",
+
                     "message":
                         "Customer message is required"
+
                 }), 400
 
+
             current_session = None
+
 
             if session_id:
 
@@ -976,12 +1298,20 @@ def register_routes(app):
                     )
                 )
 
+
             if current_session:
 
                 product = str(
                     current_session.get(
                         "product",
                         "Amazon"
+                    )
+                ).strip()
+
+                scenario = str(
+                    current_session.get(
+                        "scenario",
+                        "General Support"
                     )
                 ).strip()
 
@@ -994,27 +1324,41 @@ def register_routes(app):
                     )
                 ).strip()
 
+                scenario = str(
+                    data.get(
+                        "scenario",
+                        "General Support"
+                    )
+                ).strip()
+
+
             customer_analysis = (
                 data.get(
                     "analysis"
                 )
-                or data.get(
+                or
+                data.get(
                     "customer_analysis"
                 )
-                or sentiment_agent.analyze(
+                or
+                sentiment_agent.analyze(
                     customer_message
                 )
             )
+
 
             knowledge = (
                 data.get(
                     "knowledge"
                 )
-                or get_knowledge(
+                or
+                get_knowledge(
                     product,
-                    customer_message
+                    customer_message,
+                    scenario
                 )
             )
+
 
             suggestion = (
                 orchestrator
@@ -1022,12 +1366,15 @@ def register_routes(app):
                 .suggest_response(
                     customer_message=
                         customer_message,
+
                     customer_analysis=
                         customer_analysis,
+
                     knowledge=
                         knowledge
                 )
             )
+
 
             suggested_response = str(
                 suggestion.get(
@@ -1036,53 +1383,48 @@ def register_routes(app):
                 )
             ).strip()
 
+
             if not suggested_response:
 
                 return jsonify({
+
                     "status":
                         "error",
+
                     "message":
                         "AI suggestion was empty"
+
                 }), 500
 
+
             return jsonify({
+
                 "status":
                     "success",
+
                 "source":
                     suggestion.get(
                         "source",
                         "gemini"
                     ),
+
                 "suggested_response":
                     suggested_response,
+
                 "reasoning":
                     suggestion.get(
                         "reasoning",
                         ""
                     ),
+
                 "analysis":
                     customer_analysis,
+
                 "knowledge":
                     knowledge
+
             }), 200
 
-        except LookupError as error:
-
-            return jsonify({
-                "status":
-                    "error",
-                "message":
-                    str(error)
-            }), 404
-
-        except ValueError as error:
-
-            return jsonify({
-                "status":
-                    "error",
-                "message":
-                    str(error)
-            }), 400
 
         except Exception as error:
 
@@ -1092,25 +1434,28 @@ def register_routes(app):
             )
 
             return jsonify({
+
                 "status":
                     "error",
+
                 "message":
                     str(error)
+
             }), 500
-            # -----------------------------------------------------
+
+
+    # =====================================================
     # GENERATE CUSTOMER MESSAGE
-    # -----------------------------------------------------
+    # =====================================================
 
     @app.route(
         "/generate-message",
         methods=["POST"]
     )
     def generate_message():
-        """
-        Generates a fresh AI customer message.
-        """
 
         try:
+
             data = get_json_data()
 
             session_id = str(
@@ -1122,14 +1467,18 @@ def register_routes(app):
 
             current_session = None
 
+
             if session_id:
+
                 current_session = (
                     get_active_session(
                         session_id
                     )
                 )
 
+
             if current_session:
+
                 product = current_session.get(
                     "product",
                     "Amazon"
@@ -1163,6 +1512,7 @@ def register_routes(app):
                 )
 
             else:
+
                 product = data.get(
                     "product",
                     "Amazon"
@@ -1195,40 +1545,53 @@ def register_routes(app):
                     )
                 )
 
+
             customer_message = (
-                simulator_agent.generate_message(
-                    product=product,
-                    scenario=scenario,
-                    persona=persona,
-                    language=language,
-                    difficulty=difficulty,
+                simulator_agent
+                .generate_message(
+                    product=
+                        product,
+
+                    scenario=
+                        scenario,
+
+                    persona=
+                        persona,
+
+                    language=
+                        language,
+
+                    difficulty=
+                        difficulty,
+
                     conversation_history=
                         conversation_history,
+
                     session_id=
                         session_id or "default"
                 )
             )
 
+
             if current_session:
+
                 current_session[
                     "current_customer_message"
-                ] = customer_message
+                ] = (
+                    customer_message
+                )
+
 
             return jsonify({
+
                 "status":
                     "success",
+
                 "customer_message":
                     customer_message
+
             }), 200
 
-        except LookupError as error:
-
-            return jsonify({
-                "status":
-                    "error",
-                "message":
-                    str(error)
-            }), 404
 
         except Exception as error:
 
@@ -1238,61 +1601,74 @@ def register_routes(app):
             )
 
             return jsonify({
+
                 "status":
                     "error",
+
                 "message":
                     str(error)
+
             }), 500
 
 
-    # -----------------------------------------------------
+    # =====================================================
     # ANALYZE MESSAGE
-    # -----------------------------------------------------
+    # =====================================================
 
     @app.route(
         "/analyze-message",
         methods=["POST"]
     )
     def analyze_message():
-        """
-        Analyzes intent, sentiment,
-        and frustration.
-        """
 
         try:
+
             data = get_json_data()
+
 
             customer_message = str(
                 data.get(
                     "customer_message"
                 )
-                or data.get(
+                or
+                data.get(
                     "message"
                 )
                 or ""
             ).strip()
 
+
             if not customer_message:
 
                 return jsonify({
+
                     "status":
                         "error",
+
                     "message":
                         "Customer message is required"
+
                 }), 400
 
+
             analysis = (
-                sentiment_agent.analyze(
+                sentiment_agent
+                .analyze(
                     customer_message
                 )
             )
 
+
             return jsonify({
+
                 "status":
                     "success",
+
                 "analysis":
                     analysis
+
             }), 200
+
 
         except Exception as error:
 
@@ -1302,95 +1678,82 @@ def register_routes(app):
             )
 
             return jsonify({
+
                 "status":
                     "error",
+
                 "message":
                     str(error)
+
             }), 500
 
 
-    # -----------------------------------------------------
+    # =====================================================
     # END SESSION
-    # -----------------------------------------------------
+    # =====================================================
 
     @app.route(
         "/end-session",
         methods=["POST"]
     )
     def end_session():
-        """
-        Ends the active session.
-        """
 
         try:
             data = get_json_data()
-
-            session_id = str(
-                data.get(
-                    "session_id",
-                    ""
-                )
-            ).strip()
+            session_id = str(data.get("session_id", "")).strip()
 
             if not session_id:
-
                 return jsonify({
-                    "status":
-                        "error",
-                    "message":
-                        "Session ID is required"
+                    "status": "error",
+                    "message": "Session ID is required"
                 }), 400
 
-            result = (
-                session_manager.end_session(
-                    session_id
-                )
+            current_session = session_manager.get_session(session_id)
+            if not current_session:
+                return jsonify({
+                    "status": "error",
+                    "message": "Session not found"
+                }), 404
+
+            result = session_manager.end_session(session_id)
+            completed_session = result["session"]
+            numerical_summary = result["summary"]
+
+            post_interaction_summary = post_interaction_agent.generate_summary(
+                session=completed_session,
+                existing_summary=numerical_summary,
             )
 
-            simulator_agent.reset_session(
-                session_id
+            session_manager.save_post_interaction_summary(
+                session_id,
+                post_interaction_summary,
             )
+
+            try:
+                simulator_agent.reset_session(session_id)
+            except Exception as error:
+                print("SIMULATOR RESET ERROR =", error)
 
             return jsonify({
-                "status":
-                    "success",
-                "message":
-                    "Session completed successfully",
-                "session_id":
-                    session_id,
-                "summary":
-                    result["summary"],
-                "report_url":
-                    f"/report/{session_id}"
+                "status": "success",
+                "message": "Session completed successfully",
+                "session_id": session_id,
+                "summary": numerical_summary,
+                "post_interaction_summary": post_interaction_summary,
+                "report_url": f"/report/{session_id}",
             }), 200
 
-        except ValueError as error:
-
-            return jsonify({
-                "status":
-                    "error",
-                "message":
-                    str(error)
-            }), 404
-
         except Exception as error:
-
-            print(
-                "END SESSION ERROR =",
-                error
-            )
-
+            print("END SESSION ERROR =", error)
             return jsonify({
-                "status":
-                    "error",
-                "message":
-                    str(error)
+                "status": "error",
+                "message": str(error)
             }), 500
 
 
-    # -----------------------------------------------------
+    # =====================================================
     # SESSION REPORT
-    # -----------------------------------------------------
+    # =====================================================
 
     @app.route(
         "/session-report/<session_id>",
@@ -1399,32 +1762,27 @@ def register_routes(app):
     def session_report(
         session_id
     ):
-        """
-        Returns the complete session report.
-        """
 
         try:
+
             report_data = (
-                session_manager.get_report_data(
+                session_manager
+                .get_report_data(
                     session_id
                 )
             )
 
+
             return jsonify({
+
                 "status":
                     "success",
+
                 "report":
                     report_data
+
             }), 200
 
-        except ValueError as error:
-
-            return jsonify({
-                "status":
-                    "error",
-                "message":
-                    str(error)
-            }), 404
 
         except Exception as error:
 
@@ -1434,39 +1792,109 @@ def register_routes(app):
             )
 
             return jsonify({
+
                 "status":
                     "error",
+
                 "message":
                     str(error)
+
             }), 500
 
 
-    # -----------------------------------------------------
-    # LIST SESSIONS
-    # -----------------------------------------------------
+    # =====================================================
+    # PERFORMANCE ANALYTICS
+    # MILESTONE 4 TASK 2
+    # =====================================================
+
+    @app.route(
+        "/performance-analytics",
+        methods=["GET"]
+    )
+    def performance_analytics():
+        """
+        Returns analytics across
+        all completed sessions.
+
+        Includes:
+        - performance trend
+        - escalation triggers
+        - knowledge gaps
+        - improvement indicators
+        - strongest / weakest areas
+        - chart data
+        """
+
+        try:
+
+            analytics = (
+                session_manager
+                .get_performance_analytics()
+            )
+
+
+            return jsonify({
+
+                "status":
+                    "success",
+
+                "analytics":
+                    analytics
+
+            }), 200
+
+
+        except Exception as error:
+
+            print(
+                "PERFORMANCE ANALYTICS ERROR =",
+                error
+            )
+
+            return jsonify({
+
+                "status":
+                    "error",
+
+                "message":
+                    str(error)
+
+            }), 500
+
+
+    # =====================================================
+    # LIST ALL SESSIONS
+    # =====================================================
 
     @app.route(
         "/sessions",
         methods=["GET"]
     )
     def list_all_sessions():
-        """
-        Returns all sessions.
-        """
 
         try:
+
             sessions = (
-                session_manager.list_sessions()
+                session_manager
+                .list_sessions()
             )
 
+
             return jsonify({
+
                 "status":
                     "success",
+
                 "total_sessions":
-                    len(sessions),
+                    len(
+                        sessions
+                    ),
+
                 "sessions":
                     sessions
+
             }), 200
+
 
         except Exception as error:
 
@@ -1476,40 +1904,44 @@ def register_routes(app):
             )
 
             return jsonify({
+
                 "status":
                     "error",
+
                 "message":
                     str(error)
+
             }), 500
 
 
-    # -----------------------------------------------------
+    # =====================================================
     # LEGACY COACHING PIPELINE
-    # -----------------------------------------------------
+    # =====================================================
 
     @app.route(
         "/run-coaching",
         methods=["POST"]
     )
     def run_coaching():
-        """
-        Keeps the previous coaching endpoint
-        for compatibility.
-        """
 
         try:
+
             data = get_json_data()
 
+
             result = (
-                coaching_pipeline.run(
+                coaching_pipeline
+                .run(
                     data.get(
                         "product",
                         "Amazon"
                     ),
+
                     data.get(
                         "scenario",
                         "General Support"
                     ),
+
                     data.get(
                         "customer_persona",
                         "Regular Customer"
@@ -1517,12 +1949,17 @@ def register_routes(app):
                 )
             )
 
+
             return jsonify({
+
                 "status":
                     "success",
+
                 "result":
                     result
+
             }), 200
+
 
         except Exception as error:
 
@@ -1532,8 +1969,11 @@ def register_routes(app):
             )
 
             return jsonify({
+
                 "status":
                     "error",
+
                 "message":
                     str(error)
+
             }), 500
